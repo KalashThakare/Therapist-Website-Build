@@ -7,6 +7,11 @@ import About from '@/components/About';
 import StatsSection from '@/components/stats';
 import HowIHelp from '@/components/HowIHelp';
 import ScheduleConsultation from '@/components/ScheduleConsultation';
+import Books from '@/components/books';
+import Blogs from '@/components/blogs';
+import FAQ from '@/components/Faq';
+import MatthewQuote from '@/components/qute';
+import ContactForm from '@/components/ContactForm';
 
 const Home = () => {
   return (
@@ -18,6 +23,11 @@ const Home = () => {
       <ScheduleConsultation />
       <About />
       <Testimonials />
+      <Books />
+      <Blogs />
+      <FAQ />
+      <MatthewQuote />
+      <ContactForm />
     </div>
   )
 }
