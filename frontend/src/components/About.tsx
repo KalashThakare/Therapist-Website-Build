@@ -28,14 +28,14 @@ const About = () => {
                     </div>
 
                     {/* Right Image  */}
-                    <div className="relative h-full flex items-center">
-                        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 w-full">
+                    <div className="flex justify-center items-center">
+                        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 w-80">
                         
-                            <div className="h-80 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+                            <div className="h-80 w-80 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
 
                                 <img 
-                                    src="/phobia.jpg" 
-                                    alt="Ilah Brock - Certified Hypnotherapist"
+                                    src="/serenBlake.jpg" 
+                                    alt="Dr. Serena Blake, PsyD (Clinical Psychologist)"
                                     className="w-full h-full object-cover"
                                 />
                                 
