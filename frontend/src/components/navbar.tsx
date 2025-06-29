@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Phone, MapPin, Menu, X, Calendar } from 'lucide-react';
+import { Phone, MapPin, Menu, X, Sparkles } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -27,7 +27,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      <div className="bg-[#DDF5F0] border-b border-gray-200 py-4 px-4">
+      {/* <div className="bg-[#DDF5F0] border-b border-gray-200 py-4 px-4">
         <div className="max-w-7xl mx-auto flex justify-center items-center text-sm text-gray-700">
           <div className="flex items-center">
               <Link href="/" className="flex items-center space-x-2">
@@ -42,7 +42,7 @@ const Navbar = () => {
               </Link>
             </div>
         </div>
-      </div>
+      </div> */}
 
       {/* navbar */}
       <nav className="bg-[#DDF5F0] shadow-sm border-b">
@@ -55,7 +55,7 @@ const Navbar = () => {
                 href="/hypnotherapies" 
                 className="text-gray-700 hover:text-green-600 transition-colors duration-200 font-medium"
               >
-                Hypnotherapies
+                Services
               </Link>
               <Link 
                 href="/about" 
@@ -67,33 +67,33 @@ const Navbar = () => {
                 href="/blog" 
                 className="text-gray-700 hover:text-green-600 transition-colors duration-200 font-medium"
               >
-                Blog
+                Testimonials
               </Link>
               <Link 
                 href="/testimonials" 
                 className="text-gray-700 hover:text-green-600 transition-colors duration-200 font-medium"
               >
-                Testimonials
+                Rates & FAQs
               </Link>
               <Link 
                 href="/contact" 
                 className="text-gray-700 hover:text-green-600 transition-colors duration-200 font-medium"
               >
-                Contact
+                Areas Served
               </Link>
               <Link 
                 href="/rates-insurance" 
                 className="text-gray-700 hover:text-green-600 transition-colors duration-200 font-medium"
               >
-                Rates & Insurance
+                Contact
               </Link>
               
               <Link 
                 href="/consultation" 
                 className="flex items-center space-x-2 bg-white border border-gray-300 rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors duration-200"
               >
-                <Calendar className="w-4 h-4" />
-                <span>Free Consultation</span>
+                <Sparkles className="w-4 h-4" />
+                <span>Get Started</span>
               </Link>
             </div>
 
@@ -116,7 +116,7 @@ const Navbar = () => {
                   className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Hypnotherapies
+                  Services
                 </Link>
                 <Link 
                   href="/about" 
@@ -130,36 +130,36 @@ const Navbar = () => {
                   className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Blog
+                  Testimonials
                 </Link>
                 <Link 
                   href="/testimonials" 
                   className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Testimonials
+                  Rates & FAQs
                 </Link>
                 <Link 
                   href="/contact" 
                   className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Contact
+                  Areas Served
                 </Link>
                 <Link 
                   href="/rates-insurance" 
                   className="block px-3 py-2 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  Rates & Insurance
+                  Contact
                 </Link>
                 <Link 
                   href="/consultation" 
                   className="flex items-center space-x-2 mx-3 mt-3 bg-white border border-gray-300 rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
-                  <Calendar className="w-4 h-4" />
-                  <span>Free Consultation</span>
+                  <Sparkles className="w-4 h-4" />
+                  <span>Get Started</span>
                 </Link>
               </div>
             </div>

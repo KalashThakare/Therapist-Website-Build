@@ -29,9 +29,9 @@ const About = () => {
 
                     {/* Right Image  */}
                     <div className="flex justify-center items-center">
-                        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 w-80">
+                        <div className="bg-white rounded-2xl shadow-2xl overflow-hidden transform hover:scale-105 transition-transform duration-300 w-full max-w-sm mx-auto">
                         
-                            <div className="h-80 w-80 bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
+                            <div className="aspect-square bg-gradient-to-br from-gray-100 to-gray-200 relative overflow-hidden">
 
                                 <img 
                                     src="/serenBlake.jpg" 
