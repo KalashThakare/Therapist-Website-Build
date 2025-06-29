@@ -12,6 +12,7 @@ import Blogs from '@/components/blogs';
 import FAQ from '@/components/Faq';
 import MatthewQuote from '@/components/qute';
 import ContactForm from '@/components/ContactForm';
+import Footer from '@/components/footer';
 
 const Home = () => {
   return (
@@ -28,6 +29,7 @@ const Home = () => {
       <FAQ />
       <MatthewQuote />
       <ContactForm />
+      <Footer />
     </div>
   )
 }

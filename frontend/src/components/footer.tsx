@@ -1,0 +1,151 @@
+"use client"
+import React from 'react';
+import Link from 'next/link';
+import {Phone} from "lucide-react";
+
+const Footer: React.FC = () => {
+  return (
+    <footer className="bg-[#244344] text-gray-300 py-12 px-10">
+      <div className="max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          {/* Logo and Contact Info */}
+          <div className="lg:col-span-1">
+            <div className="mb-6">
+              <div className="bg-white rounded-full p-3 w-fit mb-4">
+                <div className="flex items-center space-x-2">
+                  <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
+                    <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <div className="text-teal-700 font-semibold text-sm">Serena</div>
+                    <div className="text-teal-700 font-semibold text-sm">Blake</div>
+                    <div className="text-xs text-gray-600">LICENSED CLINICAL</div>
+                    <div className="text-xs text-gray-600">SOCIAL WORKER</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex items-center space-x-2 mb-2">
+              <span className="text-yellow-400">★</span>
+              <span className="font-semibold text-sm underline hover:no-underline">Top Rated</span>
+              <span>•</span>
+              <span className='font-semibold text-sm underline hover:no-underline'>Testimonials</span>
+              <span>•</span>
+              <span className='font-semibold text-sm underline hover:no-underline'>Media Mentions</span>
+            </div>
+
+            <div className="mb-4">
+              <p className="text-sm leading-relaxed">
+                1287 Maplewood Drive, Los Angeles, CA 90026
+              </p>
+            </div>
+
+            <div className="flex mb-4 gap-2">
+                <Phone className='size-4'/>
+              <p className="text-sm">
+                  (323) 555-0192
+              </p>
+            </div>
+
+            <div className="bg-blue-600 text-white px-3 py-2 rounded text-xs font-medium w-fit">
+              ✓ VERIFIED BY Psychology Today
+            </div>
+          </div>
+
+          {/* Links */}
+          <div className="lg:col-span-1">
+            <h3 className="text-white font-semibold mb-4 text-lg">LINKS</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/contact" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                  Get In Touch
+                </Link>
+              </li>
+              <li>
+                <Link href="/testimonials" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                  Testimonials
+                </Link>
+              </li>
+              <li>
+                <Link href="/about" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                  About Me
+                </Link>
+              </li>
+              <li>
+                <Link href="/faq" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                  FAQ's
+                </Link>
+              </li>
+              <li>
+                <Link href="/therapies" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                  Therapies
+                </Link>
+              </li>
+              <li>
+                <Link href="/blog" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                  Blogs
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Areas Served */}
+          <div className="lg:col-span-1">
+            <h3 className="text-white font-semibold mb-4 text-lg">AREAS SERVED</h3>
+            <ul className="space-y-2 text-sm">
+              <li className="text-gray-300">Richmond, VA</li>
+              <li className="text-gray-300">Ashland, VA</li>
+              <li className="text-gray-300">Mechanicsville, VA</li>
+              <li className="text-gray-300">Lakeside, VA</li>
+              <li className="text-gray-300">East Highland Park, VA</li>
+              <li className="text-gray-300">Short Pump, VA</li>
+              <li className="text-gray-300">Highland Springs, VA</li>
+              <li className="text-gray-300">Glen Allen, VA</li>
+              <li className="text-gray-300">Sandston, VA</li>
+              <li className="text-gray-300">Bon Air, VA</li>
+              <li className="text-gray-300">Chester, VA</li>
+              <li className="text-gray-300">Midlothian, VA</li>
+              <li className="text-gray-300">Moseley, VA</li>
+              <li className="text-gray-300">Hopewell, VA</li>
+            </ul>
+          </div>
+
+          {/* Services */}
+          <div className="lg:col-span-1">
+            <h3 className="text-white font-semibold mb-4 text-lg">SERVICES</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link href="/individual-counseling" className="text-gray-300 hover:text-white transition-colors">
+                  Christian Individual Counseling in Richmond, VA
+                </Link>
+              </li>
+              <li>
+                <Link href="/couples-counseling" className="text-gray-300 hover:text-white transition-colors">
+                  Christian Couples Counseling in Richmond, VA
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom URL */}
+        <div className="text-center mt-8 pt-10 border-t border-white">
+          <p className="text-sm text-gray-400 font-bold">
+            Serena Blake © Copyright 2024. All Rights Reserved.
+          </p>
+          <p className="text-xs text-gray-400">
+            Credits to freepik for media www.freepik.com People illustrations by Storyset
+          </p>
+          <p className="text-sm text-gray-400 underline">
+            Privacy Policy & Terms of Service
+          </p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
