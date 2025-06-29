@@ -51,7 +51,7 @@ const Books = () => {
                 </div>
                 {/* Header */}
                 <h1 className="text-5xl font-bold text-gray-800 mb-16">
-                    Seren's Books
+                    Serena's Books
                 </h1>
 
                 {/* Books Grid */}

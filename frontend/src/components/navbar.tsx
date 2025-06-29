@@ -18,7 +18,7 @@ const Navbar = () => {
         <div className="max-w-7xl mx-auto flex justify-between items-center text-sm text-gray-700">
           <div className="flex items-center space-x-1">
             <Phone className="w-4 h-4" />
-            <span>559.749.4803</span>
+            <span>(323) 555-0192</span>
           </div>
           <div className="flex items-center space-x-1">
             <MapPin className="w-4 h-4" />
@@ -52,7 +52,7 @@ const Navbar = () => {
             {/* Desktop Navigation */}
             <div className="hidden lg:flex items-center space-x-8">
               <Link 
-                href="/hypnotherapies" 
+                href="/services" 
                 className="text-gray-700 hover:text-green-600 transition-colors duration-200 font-medium"
               >
                 Services
