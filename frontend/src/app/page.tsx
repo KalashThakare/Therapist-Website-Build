@@ -5,6 +5,8 @@ import HowWeHelp from '@/components/HowWeHelp';
 import Testimonials from '@/components/Testimonials';
 import About from '@/components/About';
 import StatsSection from '@/components/stats';
+import HowIHelp from '@/components/HowIHelp';
+import ScheduleConsultation from '@/components/ScheduleConsultation';
 
 const Home = () => {
   return (
@@ -12,9 +14,10 @@ const Home = () => {
       <Navbar />
       <HeroSection />
       <StatsSection />
-      <HowWeHelp />
-      <Testimonials />
+      <HowIHelp />
+      <ScheduleConsultation />
       <About />
+      <Testimonials />
     </div>
   )
 }

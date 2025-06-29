@@ -89,9 +89,9 @@ const HowWeHelp: React.FC = () => {
         <div className="min-h-screen bg-gray-50 py-16 px-4">
             <div className="max-w-7xl mx-auto">
                 {/* Header */}
-                <div className="text-center mb-16">
-                    <h1 className="text-4xl font-normal text-gray-800 mb-4 tracking-tight" style={{ fontFamily: 'Georgia, serif' }}>
-                        How We Help
+                <div className="pl-6 mb-16">
+                    <h1 className="text-5xl  text-emerald-900 mb-4 tracking-tight" style={{ fontFamily: 'Georgia, serif' }}>
+                        How I Help
                     </h1>
                 </div>
 
