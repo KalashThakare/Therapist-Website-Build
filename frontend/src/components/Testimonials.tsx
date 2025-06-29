@@ -41,7 +41,7 @@ const Testimonials = () => {
                         Client Success Stories & Testimonials
                     </h2>
                 </div>
-                <h1 className="text-5xl md:text-5xl font-bold text-gray-800 mb-6">
+                <h1 className="text-5xl md:text-5xl font-bold text-[#345048] mb-6">
                     What Former Clients Say
                 </h1>
                 <p className="text-lg text-gray-600 mx-auto mb-8">
@@ -50,7 +50,7 @@ const Testimonials = () => {
 
             </div>
 
-            <div className="relative overflow-hidden">
+            <div className="relative overflow-hidden max-w-5xl mx-auto">
                 <InfiniteMovingCards
                     items={testimonials}
                     direction="right"

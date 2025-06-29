@@ -53,7 +53,7 @@ const About = () => {
                         </div>
 
 
-                        <h2 className="text-4xl md:text-5xl font-serif text-[#3f4945] leading-tight">
+                        <h2 className="text-4xl md:text-5xl font-serif text-[#345048] leading-tight">
                             Hi I'm Dr. Serena Blake
                         </h2>
 

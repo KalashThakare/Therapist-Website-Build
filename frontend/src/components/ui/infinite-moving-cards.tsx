@@ -72,7 +72,7 @@ export const InfiniteMovingCards = ({
     <div
       ref={containerRef}
       className={cn(
-        "scroller relative z-20 w-full overflow-hidden ",
+        "scroller relative z-20 w-full overflow-hidden  [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)] ",
         className,
       )}
     >
@@ -86,7 +86,7 @@ export const InfiniteMovingCards = ({
       >
         {items.map((item, idx) => (
           <li
-            className="relative w-[320px] h-[320px] max-w-full shrink-0 rounded-2xl border border-b-0 border-zinc-200 bg-[#E4F7F5] px-8 py-6 md:w-[370px] md:h-[320px] "
+            className="relative w-[320px] h-[320px] max-w-full shrink-0 rounded-2xl border border-b-0 border-zinc-200 bg-[#e4eef1] px-8 py-6 md:w-[370px] md:h-[320px] "
             key={item.User}
           >
             <blockquote>
@@ -97,15 +97,15 @@ export const InfiniteMovingCards = ({
               <span className="relative z-20 text-xl font-bold leading-[1.6]  text-black">
                 {item.User}
               </span>
-              <span className="block relative z-20 text-sm font-serif leading-[1.6] font-normal text-black">
+              <span className="block relative z-20 text-sm font-serif leading-[1.6] font-normal text-[#395155]">
                 Happy Client
               </span>
               <div className="relative z-20 mt-6 flex flex-row items-center">
                 <span className="flex flex-col gap-1">
-                  <span className="text-sm leading-[1.6] font-normal text-black">
+                  <span className="text-sm leading-[1.6] font-normal text-[#395155]">
                     {item.description}
                   </span>
-                  <span className="text-sm leading-[1.6] font-normal text-black">
+                  <span className="text-sm leading-[1.6] font-normal text-[#395155]">
                     {/* rating */}
                   </span>
                 </span>

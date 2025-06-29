@@ -22,7 +22,7 @@ const Navbar = () => {
           </div>
           <div className="flex items-center space-x-1">
             <MapPin className="w-4 h-4" />
-            <span>1011 W. Center Ave. Visalia, Ca 93291</span>
+            <span>1287 Maplewood Drive, Los Angeles, CA 90026</span>
           </div>
         </div>
       </div>
@@ -45,7 +45,7 @@ const Navbar = () => {
       </div> */}
 
       {/* navbar */}
-      <nav className="bg-[#DDF5F0] shadow-sm border-b">
+      <nav className="bg-[#e5ecf1] shadow-sm border-b">
         <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
           <div className="flex justify-center items-center h-16">
     
