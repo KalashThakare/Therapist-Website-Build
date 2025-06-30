@@ -1,8 +1,20 @@
 "use client"
 import React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 const HowIHelp = () => {
+
+  const router = useRouter();
+
+  const handleIndividualClick = () => {
+    router.push("/services/individual-counceling");
+  };
+
+  const handleCouplesClick = () => {
+    router.push("/services/couples-counseling"); // Add appropriate route
+  };
+
   return (
     <div className="bg-gray-50 py-16 px-4 relative overflow-hidden">
         <div className="absolute bottom-0 right-20 hidden lg:block">
@@ -49,7 +61,7 @@ const HowIHelp = () => {
                 Discover Peace, Purpose, and God's Truth in Richmond, VA.
               </p>
               
-              <button className="w-full hover:bg-white/70 text-slate-700 font-semibold py-3 px-6 rounded-xl border border-black transition-all duration-300 hover:shadow-md">
+              <button onClick={handleIndividualClick} className="w-full hover:bg-white/70 text-slate-700 font-semibold py-3 px-6 rounded-xl border border-black transition-all duration-300 hover:shadow-md">
                 Learn More
               </button>
             </div>
@@ -80,7 +92,7 @@ const HowIHelp = () => {
                 Heal Your Relationship, Grow Closer to God Together in Richmond.
               </p>
               
-              <button className="w-full hover:bg-white/70 text-slate-700 font-semibold py-3 px-6 rounded-xl border border-black transition-all duration-300 hover:shadow-md">
+              <button onClick={handleCouplesClick} className="w-full hover:bg-white/70 text-slate-700 font-semibold py-3 px-6 rounded-xl border border-black transition-all duration-300 hover:shadow-md">
                 Learn More
               </button>
             </div>

@@ -44,7 +44,7 @@ const StatsSection = () => {
                 <CountUp
                   start={0}
                   end={45000}
-                  duration={3}
+                  duration={2}
                   suffix="+"
                   useEasing={true}
                   separator=","

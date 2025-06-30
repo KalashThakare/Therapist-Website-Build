@@ -76,13 +76,13 @@ const Navbar = () => {
                 Rates & FAQs
               </Link>
               <Link 
-                href="/contact" 
+                href="/locations" 
                 className="text-gray-700 hover:text-green-600 transition-colors duration-200 font-medium"
               >
                 Areas Served
               </Link>
               <Link 
-                href="/rates-insurance" 
+                href="/contact" 
                 className="text-gray-700 hover:text-green-600 transition-colors duration-200 font-medium"
               >
                 Contact

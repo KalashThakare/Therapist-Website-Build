@@ -151,7 +151,7 @@ export default function ContactPage() {
                       value={formData.message}
                       onChange={handleInputChange}
                       placeholder="How can I help you?"
-                      rows={5}
+                      rows={2}
                       className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all duration-200 resize-vertical text-gray-900"
                     />
                   </div>
