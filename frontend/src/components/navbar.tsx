@@ -7,6 +7,7 @@ import { Phone, MapPin, Menu, X, Sparkles, PhoneCall, ChevronDown } from 'lucide
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
    const [isServicesOpen, setIsServicesOpen] = useState(false);
+   const [isAreasOpen, setIsAreasOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -60,17 +61,17 @@ const Navbar = () => {
                 </button>
                 
                 {/* Dropdown Menu */}
-                <div className={`absolute top-full left-0 mt-1 w-80 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-200 ${
+                <div className={`absolute top-full left-0 mt-1 w-150 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-200 ${
                   isServicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}>
-                  <div className="p-4 space-y-4">
+                  <div className="grid grid-cols-2 p-4 space-y-4">
                     <Link 
                       href="/services/individual-counceling"
                       className="block group"
                     >
                       <div className="p-3 rounded-lg hover:bg-[#bddade] transition-colors duration-200">
                         <h3 className="font-semibold text-gray-800  transition-colors">
-                          Christian Individual Counseling in Richmond, VA
+                          Individual Counseling in Richmond, VA
                         </h3>
                         <p className="text-sm text-gray-600 mt-1">
                           Discover Peace, Purpose, and God's Truth in Richmond, VA.
@@ -84,7 +85,7 @@ const Navbar = () => {
                     >
                       <div className="p-3 rounded-lg hover:bg-[#bddade] transition-colors duration-200">
                         <h3 className="font-semibold text-gray-800 transition-colors">
-                          Christian Couples Counseling in Richmond, VA
+                          Couples Counseling in Richmond, VA
                         </h3>
                         <p className="text-sm text-gray-600 mt-1">
                           Heal Your Relationship, Grow Closer to God Together in Richmond.
@@ -115,12 +116,98 @@ const Navbar = () => {
               >
                 Rates & FAQs
               </a>
-              <Link 
-                href="/locations" 
-                className="text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200 font-medium"
+              <div 
+                className="relative"
+                onMouseEnter={() => setIsAreasOpen(true)}
+                onMouseLeave={() => setIsAreasOpen(false)}
               >
-                Areas Served
-              </Link>
+                <button className="flex items-center space-x-1 text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200 font-medium">
+                  <span>Areas Served</span>
+                </button>
+                
+                {/* Areas Dropdown Menu */}
+                <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-200 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-200 ${
+                  isAreasOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                }`}>
+                  <div className="p-6">
+                    <div className="grid grid-cols-3 gap-6">
+                      {/* Column 1 */}
+                      <div className="space-y-3">
+                        <Link href="/services" className="block group">
+                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
+                            <h4 className="font-semibold text-gray-800 text-md">Richmond, VA</h4>
+                            <p className="text-xs text-gray-600 mt-1">Richmond is known for its rich Civil War history, the James River rapids,...</p>
+                          </div>
+                        </Link>
+                        
+                        <Link href="/services" className="block group">
+                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
+                            <h4 className="font-semibold text-gray-800 text-md">Mechanicsville, VA</h4>
+                            <p className="text-xs text-gray-600 mt-1">Mechanicsville is known for its Civil War battlefields and suburban...</p>
+                          </div>
+                        </Link>
+                        
+                        <Link href="/services" className="block group">
+                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
+                            <h4 className="font-semibold text-gray-800 text-md">East Highland Park, VA</h4>
+                            <p className="text-xs text-gray-600 mt-1">East Highland Park is a residential suburb directly east of downtown...</p>
+                          </div>
+                        </Link>
+                      
+                      </div>
+                      
+                      {/* Column 2 */}
+                      <div className="space-y-3">
+                        <Link href="/services" className="block group">
+                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
+                            <h4 className="font-semibold text-gray-800 text-md">Ashland, VA</h4>
+                            <p className="text-xs text-gray-600 mt-1">Ashland is home to Randolph-Macon College and features a charming...</p>
+                          </div>
+                        </Link>
+                        
+                        <Link href="/services" className="block group">
+                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
+                            <h4 className="font-semibold text-gray-800 text-md">Lakeside, VA</h4>
+                            <p className="text-xs text-gray-600 mt-1">Lakeside sits just east of Richmond and is known for its proximity to maj...</p>
+                          </div>
+                        </Link>
+                        
+                        <Link href="/services" className="block group">
+                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
+                            <h4 className="font-semibold text-gray-800 text-md">Short Pump, VA</h4>
+                            <p className="text-xs text-gray-600 mt-1">Short Pump is a major shopping and dining district in western Henrico...</p>
+                          </div>
+                        </Link>
+                      </div>
+                      
+                      {/* Column 3 */}
+                      <div className="space-y-3">
+                        <Link href="/services" className="block group">
+                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
+                            <h4 className="font-semibold text-gray-800 text-md">Sandston, VA</h4>
+                            <p className="text-xs text-gray-600 mt-1">Sandston is located just east of Richmond International Airport and i...</p>
+                          </div>
+                        </Link>
+                        
+                        <Link href="/services" className="block group">
+                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
+                            <h4 className="font-semibold text-gray-800 text-md">Bon Air, VA</h4>
+                            <p className="text-xs text-gray-600 mt-1">Bon Air is a historic suburb named for its location on Richmond's south side...</p>
+                          </div>
+                        </Link>
+                        
+                        <Link href="/services" className="block group">
+                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
+                            <h4 className="font-semibold text-gray-800 text-md">Chester, VA</h4>
+                            <p className="text-xs text-gray-600 mt-1">Chester is a census-designated place in Chesterfield County, with a mix of...</p>
+                          </div>
+                        </Link>
+
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <Link 
                 href="/contact" 
                 className="text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200 font-medium"
