@@ -1,7 +1,7 @@
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import Testimonials from '@/components/Testimonials';
-import { Info, Phone } from 'lucide-react';
+import { Info, Phone, PhoneCall } from 'lucide-react';
 
 const TherapistContact = () => {
     return (
@@ -41,7 +41,7 @@ const TherapistContact = () => {
 
                             <div className='w-full flex justify-center items-center'>
                                 <button className=" bg-teal-100 hover:bg-teal-200 text-teal-800 font-medium py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-3 border border-teal-200">
-                                <Phone className="w-5 h-5" />
+                                <PhoneCall className="w-5 h-5" />
                                 Call Dr. Serena Blake
                             </button>
                             </div>

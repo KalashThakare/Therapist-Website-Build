@@ -2,10 +2,11 @@
 
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { Phone, MapPin, Menu, X, Sparkles, PhoneCall } from 'lucide-react';
+import { Phone, MapPin, Menu, X, Sparkles, PhoneCall, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+   const [isServicesOpen, setIsServicesOpen] = useState(false);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -49,12 +50,50 @@ const Navbar = () => {
     
             {/* for Desktop */}
             <div className="hidden lg:flex items-center space-x-8">
-              <Link 
-                href="/services" 
-                className="text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200 font-medium"
+              <div 
+                className="relative"
+                onMouseEnter={() => setIsServicesOpen(true)}
+                onMouseLeave={() => setIsServicesOpen(false)}
               >
-                Services
-              </Link>
+                <button className="flex items-center space-x-1 text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200 font-medium">
+                  <span>Services</span>
+                </button>
+                
+                {/* Dropdown Menu */}
+                <div className={`absolute top-full left-0 mt-1 w-80 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-200 ${
+                  isServicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
+                }`}>
+                  <div className="p-4 space-y-4">
+                    <Link 
+                      href="/services/individual-counceling"
+                      className="block group"
+                    >
+                      <div className="p-3 rounded-lg hover:bg-[#bddade] transition-colors duration-200">
+                        <h3 className="font-semibold text-gray-800  transition-colors">
+                          Christian Individual Counseling in Richmond, VA
+                        </h3>
+                        <p className="text-sm text-gray-600 mt-1">
+                          Discover Peace, Purpose, and God's Truth in Richmond, VA.
+                        </p>
+                      </div>
+                    </Link>
+                    
+                    <Link 
+                      href="/services/couples"
+                      className="block group"
+                    >
+                      <div className="p-3 rounded-lg hover:bg-[#bddade] transition-colors duration-200">
+                        <h3 className="font-semibold text-gray-800 transition-colors">
+                          Christian Couples Counseling in Richmond, VA
+                        </h3>
+                        <p className="text-sm text-gray-600 mt-1">
+                          Heal Your Relationship, Grow Closer to God Together in Richmond.
+                        </p>
+                      </div>
+                    </Link>
+                  </div>
+                </div>
+              </div>
               <a 
                 href="#about" 
                 onClick={(e) => handleSmoothScroll(e, 'about')}
