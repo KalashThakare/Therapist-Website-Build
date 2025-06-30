@@ -1,9 +1,13 @@
 import React from 'react';
 import { Calendar, Star } from 'lucide-react';
 
-const About = () => {
+interface AboutProps {
+    bgColor?: string;
+}
+
+const About: React.FC<AboutProps> = ({ bgColor = "#bddade" }) => {
     return (
-        <div className="bg-[#bddade] py-16 px-4">
+        <div className="py-16 px-4" style={{ backgroundColor: bgColor }}>
             <div className="max-w-7xl mx-auto">
                 <div className="grid lg:grid-cols-2 gap-12 items-center">
 
