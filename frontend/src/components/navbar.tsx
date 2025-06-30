@@ -126,11 +126,11 @@ const Navbar = () => {
                 </button>
                 
                 {/* Areas Dropdown Menu */}
-                <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-200 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-200 ${
+                <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-150 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-200 ${
                   isAreasOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}>
                   <div className="p-6">
-                    <div className="grid grid-cols-3 gap-6">
+                    <div className="grid grid-cols-2 gap-6">
                       {/* Column 1 */}
                       <div className="space-y-3">
                         <Link href="/services" className="block group">
@@ -179,31 +179,7 @@ const Navbar = () => {
                           </div>
                         </Link>
                       </div>
-                      
-                      {/* Column 3 */}
-                      <div className="space-y-3">
-                        <Link href="/services" className="block group">
-                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
-                            <h4 className="font-semibold text-gray-800 text-md">Sandston, VA</h4>
-                            <p className="text-xs text-gray-600 mt-1">Sandston is located just east of Richmond International Airport and i...</p>
-                          </div>
-                        </Link>
-                        
-                        <Link href="/services" className="block group">
-                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
-                            <h4 className="font-semibold text-gray-800 text-md">Bon Air, VA</h4>
-                            <p className="text-xs text-gray-600 mt-1">Bon Air is a historic suburb named for its location on Richmond's south side...</p>
-                          </div>
-                        </Link>
-                        
-                        <Link href="/services" className="block group">
-                          <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
-                            <h4 className="font-semibold text-gray-800 text-md">Chester, VA</h4>
-                            <p className="text-xs text-gray-600 mt-1">Chester is a census-designated place in Chesterfield County, with a mix of...</p>
-                          </div>
-                        </Link>
 
-                      </div>
                     </div>
                   </div>
                 </div>
