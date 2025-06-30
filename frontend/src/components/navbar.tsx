@@ -57,7 +57,7 @@ const Navbar = () => {
                 onMouseLeave={() => setIsServicesOpen(false)}
               >
                 <button className="flex items-center space-x-1 text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200 font-medium">
-                  <span>Services</span>
+                  <Link href={"/services"}>Services</Link>
                 </button>
                 
                 {/* Dropdown Menu */}
@@ -80,7 +80,7 @@ const Navbar = () => {
                     </Link>
                     
                     <Link 
-                      href="/services/couples"
+                      href="/services/couple-counceling"
                       className="block group"
                     >
                       <div className="p-3 rounded-lg hover:bg-[#bddade] transition-colors duration-200">
@@ -122,7 +122,7 @@ const Navbar = () => {
                 onMouseLeave={() => setIsAreasOpen(false)}
               >
                 <button className="flex items-center space-x-1 text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200 font-medium">
-                  <span>Areas Served</span>
+                  <Link href={"/locations"}>Areas Served</Link>
                 </button>
                 
                 {/* Dropdown Menu */}

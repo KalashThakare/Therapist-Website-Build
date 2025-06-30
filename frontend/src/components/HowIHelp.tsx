@@ -12,7 +12,7 @@ const HowIHelp = () => {
   };
 
   const handleCouplesClick = () => {
-    router.push("/services/couples-counseling"); // Add appropriate route
+    router.push("/services/couple-counceling");
   };
 
   return (
