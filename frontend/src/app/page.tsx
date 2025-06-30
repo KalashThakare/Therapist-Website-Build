@@ -22,11 +22,22 @@ const Home = () => {
       <StatsSection />
       <HowIHelp />
       <ScheduleConsultation />
-      <About />
-      <Testimonials />
+      
+      <div id="about">
+        <About />
+      </div>
+      
+      <div id="testimonials">
+        <Testimonials />
+      </div>
+      
       <Books />
       <Blogs />
-      <FAQ />
+         
+      <div id="faq">
+        <FAQ />
+      </div>
+      
       <MatthewQuote />
       <ContactForm />
       <Footer />
