@@ -124,7 +124,7 @@ const HowWeHelp: React.FC = () => {
                                         service.expanded ? 'max-h-[1000px] opacity-100' : 'max-h-0 opacity-0'
                                     }`}>
                                         <div className="mt-6 space-y-4 border-t border-gray-100 pt-4">
-                                            <p className="text-gray-600 leading-relaxed text-sm transform transition-transform duration-500" style={{ fontFamily: 'Georgia, serif' }}>
+                                            <p className="text-gray-600 leading-relaxed text-sm transform transition-transform duration-500">
                                                 {service.description}
                                             </p>
                                             
@@ -159,7 +159,7 @@ const HowWeHelp: React.FC = () => {
                                                 </div>
                                             </div>
 
-                                            <button className="inline-flex items-center px-6 py-2.5 bg-gray-700 text-white text-sm rounded-full hover:bg-gray-800 transition-colors duration-200 shadow-sm transform transition-transform duration-300">
+                                            <button className="inline-flex items-center px-6 py-2.5 bg-gray-700 text-white text-sm rounded-full hover:bg-gray-800 shadow-sm transform transition-transform duration-300">
                                                 <Calendar className="w-4 h-4 mr-2" />
                                                 Schedule Free Consultation
                                             </button>
