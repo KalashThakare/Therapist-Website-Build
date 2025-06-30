@@ -125,7 +125,7 @@ const Navbar = () => {
                   <span>Areas Served</span>
                 </button>
                 
-                {/* Areas Dropdown Menu */}
+                {/* Dropdown Menu */}
                 <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-150 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-200 ${
                   isAreasOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
                 }`}>
@@ -136,21 +136,21 @@ const Navbar = () => {
                         <Link href="/services" className="block group">
                           <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
                             <h4 className="font-semibold text-gray-800 text-md">Richmond, VA</h4>
-                            <p className="text-xs text-gray-600 mt-1">Richmond is known for its rich Civil War history, the James River rapids,...</p>
+                            <p className="text-sm text-gray-600 mt-1">Richmond is known for its rich Civil War history, the James River rapids,...</p>
                           </div>
                         </Link>
                         
                         <Link href="/services" className="block group">
                           <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
                             <h4 className="font-semibold text-gray-800 text-md">Mechanicsville, VA</h4>
-                            <p className="text-xs text-gray-600 mt-1">Mechanicsville is known for its Civil War battlefields and suburban...</p>
+                            <p className="text-sm text-gray-600 mt-1">Mechanicsville is known for its Civil War battlefields and suburban...</p>
                           </div>
                         </Link>
                         
                         <Link href="/services" className="block group">
                           <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
                             <h4 className="font-semibold text-gray-800 text-md">East Highland Park, VA</h4>
-                            <p className="text-xs text-gray-600 mt-1">East Highland Park is a residential suburb directly east of downtown...</p>
+                            <p className="text-sm text-gray-600 mt-1">East Highland Park is a residential suburb directly east of downtown...</p>
                           </div>
                         </Link>
                       
@@ -161,21 +161,21 @@ const Navbar = () => {
                         <Link href="/services" className="block group">
                           <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
                             <h4 className="font-semibold text-gray-800 text-md">Ashland, VA</h4>
-                            <p className="text-xs text-gray-600 mt-1">Ashland is home to Randolph-Macon College and features a charming...</p>
+                            <p className="text-sm text-gray-600 mt-1">Ashland is home to Randolph-Macon College and features a charming...</p>
                           </div>
                         </Link>
                         
                         <Link href="/services" className="block group">
                           <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
                             <h4 className="font-semibold text-gray-800 text-md">Lakeside, VA</h4>
-                            <p className="text-xs text-gray-600 mt-1">Lakeside sits just east of Richmond and is known for its proximity to maj...</p>
+                            <p className="text-sm text-gray-600 mt-1">Lakeside sits just east of Richmond and is known for its proximity to maj...</p>
                           </div>
                         </Link>
                         
                         <Link href="/services" className="block group">
                           <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
                             <h4 className="font-semibold text-gray-800 text-md">Short Pump, VA</h4>
-                            <p className="text-xs text-gray-600 mt-1">Short Pump is a major shopping and dining district in western Henrico...</p>
+                            <p className="text-sm text-gray-600 mt-1">Short Pump is a major shopping and dining district in western Henrico...</p>
                           </div>
                         </Link>
                       </div>
