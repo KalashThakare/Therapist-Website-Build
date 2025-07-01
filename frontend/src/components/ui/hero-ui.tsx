@@ -27,6 +27,8 @@ const HeroSectionUI = ({
           alt="Hero background"
           className="w-full h-full object-cover"
         />
+
+        <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
       </div>
 
       <div className="relative z-20 flex items-center justify-center h-full">
