@@ -52,7 +52,7 @@ const Home = () => {
       <Footer />
 
       <Popup 
-        delayMinutes={1}          
+        delayMinutes={0}          
         autoShow={true}                                    
       />
     </div>
