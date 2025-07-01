@@ -7,7 +7,16 @@ import Testimonials from '@/components/Testimonials';
 import HeroSectionUI from '@/components/ui/hero-ui';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
 import { BookHeart, BookOpen, Calendar, CheckCircle, ChevronDown, Clock, Heart, Info, Phone, PhoneCall, ShieldCheck, Sparkles, UserCheck } from 'lucide-react';
-import React, { JSX, useState } from 'react'
+import React, { JSX, useState } from 'react';
+import { toast, Toaster } from 'sonner';
+
+interface FormData {
+  name: string;
+  email: string;
+  phone: string;
+  message: string;
+  time: string;
+}
 
 interface ServiceItem {
     id: string;
@@ -49,6 +58,135 @@ const testimonials = [
 ];
 
 const page = () => {
+
+    const [formData, setFormData] = useState<FormData>({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        time: ''
+      });
+    
+      const [isSubmitting, setIsSubmitting] = useState(false);
+      const [agreed, setAgreed] = useState(false);
+    
+    
+      const validateEmail = (email: string): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+      };
+    
+      const validatePhone = (phone: string): boolean => {
+        if (!phone.trim()) return true; // Phone is optional
+        const phoneRegex = /^[\+]?[(]?[\d\s\-\(\)]{10,}$/;
+        return phoneRegex.test(phone.replace(/\s/g, ''));
+      };
+    
+      const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+        const { name, value } = e.target;
+    
+        setFormData(prev => ({
+          ...prev,
+          [name]: value
+        }));
+      };
+    
+    
+    
+    
+      const validateForm = (): boolean => {
+        // Check if name is empty
+        if (!formData.name.trim()) {
+          toast.error('Please enter your name');
+          return false;
+        }
+    
+        // Check if name is too short
+        if (formData.name.trim().length < 2) {
+          toast.error('Name must be at least 2 characters long');
+          return false;
+        }
+    
+        // Check if email is empty
+        if (!formData.email.trim()) {
+          toast.error('Please enter your email address');
+          return false;
+        }
+    
+        // Check if email is valid
+        if (!validateEmail(formData.email)) {
+          toast.error('Please enter a valid email address');
+          return false;
+        }
+    
+        // Check phone if provided
+        if (formData.phone.trim() && !validatePhone(formData.phone)) {
+          toast.error('Please enter a valid phone number');
+          return false;
+        }
+    
+        if (!formData.time) {
+          toast.error("Please enter prefered time to reach you")
+        }
+    
+        return true;
+      };
+    
+      const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+    
+        if (!validateForm()) {
+          return;
+        }
+    
+        if (!agreed) {
+          toast.error('Please agree to be contacted before submitting.');
+          return false;
+        }
+    
+        setIsSubmitting(true);
+    
+        try {
+          // Prepare data for backend
+          const submitData = {
+    
+          };
+    
+    
+          const res = await fetch('/api/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(submitData),
+          });
+    
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+    
+          const result = await res.json();
+    
+          // Success
+          toast.success('Message sent successfully! Dr. Blake will contact you within one business day.');
+    
+          // Reset form
+          setFormData({
+            name: '',
+            email: '',
+            phone: '',
+            message: '',
+            time: ''
+          });
+    
+        } catch (error) {
+          console.error('Form submission error:', error);
+          toast.error('Failed to send message. Please try again or call directly.');
+        } finally {
+          setIsSubmitting(false);
+        }
+      };
+
   const services = [
         {
             title: 'Feelings of Unworthiness',
@@ -119,6 +257,11 @@ const page = () => {
 
   return (
     <div className=''>
+        <Toaster
+                position="top-center"
+                expand={true}
+                richColors
+              />
         <Navbar />
         <HeroSectionUI 
           mainHeading='Faith-Based Therapy for Anxiety, Identity & Inner Healing in Richmond, VA'
@@ -349,73 +492,106 @@ const page = () => {
                                 </p>
 
                                 <div className="space-y-6">
-                                    {/* Name Field */}
-                                    <div>
-                                        <label className="block text-gray-700 font-medium mb-2">
-                                            Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            placeholder="Name"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
-                                        />
-                                    </div>
-
-                                    {/* Email Field */}
-                                    <div>
-                                        <label className="block text-gray-700 font-medium mb-2">
-                                            Email
-                                        </label>
-                                        <input
-                                            type="email"
-                                            placeholder="you@example.com"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
-                                        />
-                                    </div>
-
-                                    {/* Phone Field */}
-                                    <div>
-                                        <label className="block text-gray-700 font-medium mb-2">
-                                            Phone
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            placeholder="(555) 234-5678"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
-                                        />
-                                    </div>
-
-                                    {/* Message Field */}
-                                    <div>
-                                        <label className="block text-gray-700 font-medium mb-2">
-                                            Message
-                                        </label>
-                                        <textarea
-                                            rows={2}
-                                            placeholder="How can I help you?"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors resize-vertical"
-                                        />
-                                    </div>
-
-                                    {/* Submit Button */}
-                                    <button
-                                        type="button"
-                                        className="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-4 px-6 rounded-lg transition-colors duration-200"
-                                    >
-                                        Send Message
-                                    </button>
-                                    <div className="p-1">
-                                        <p className="text-black flex items-start gap-1 text-sm leading-snug">
-                                            <span>
-                                                <Info className="text-black mt-0.5 w-4 h-4" />
-                                            </span>
-                                            <span>
-                                                By submitting, you confirm you are 18+ and agree to our{' '}
-                                                <span className="underline">Privacy Policy & TOS</span> and to receive emails & texts from Serena Blake.
-                                            </span>
-                                        </p>
-                                    </div>
-                                </div>
+                                
+                                                <div>
+                                                  <label className="block text-gray-700 font-medium mb-2">Name</label>
+                                                  <input
+                                                    type="text"
+                                                    name="name"
+                                                    value={formData.name}
+                                                    onChange={handleInputChange}
+                                                    placeholder="Name"
+                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                                                  />
+                                                </div>
+                                
+                                                <div>
+                                                  <label className="block text-gray-700 font-medium mb-2">Email</label>
+                                                  <input
+                                                    type="email"
+                                                    name="email"
+                                                    value={formData.email}
+                                                    onChange={handleInputChange}
+                                                    placeholder="you@example.com"
+                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                                                  />
+                                                </div>
+                                
+                                                <div>
+                                                  <label className="block text-gray-700 font-medium mb-2">Phone</label>
+                                                  <input
+                                                    type="tel"
+                                                    name="phone"
+                                                    value={formData.phone}
+                                                    onChange={handleInputChange}
+                                                    placeholder="(555) 234-5678"
+                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                                                  />
+                                                </div>
+                                
+                                                <div>
+                                                  <label className="block text-gray-700 font-medium mb-2">Message</label>
+                                                  <textarea
+                                                    name="message"
+                                                    value={formData.message}
+                                                    onChange={handleInputChange}
+                                                    rows={2}
+                                                    placeholder="What brings you here?"
+                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors resize-vertical"
+                                                  />
+                                                </div>
+                                
+                                                <div>
+                                                  <label className="block text-gray-700 font-medium mb-2">Preferred time to reach you</label>
+                                                  <input
+                                                    type="text"
+                                                    name="time"
+                                                    value={formData.time}
+                                                    onChange={handleInputChange}
+                                                    placeholder="time"
+                                                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                                                  />
+                                                </div>
+                                
+                                                <div className="flex items-center space-x-2">
+                                                  <input
+                                                    type="checkbox"
+                                                    id="agree"
+                                                    name="agree"
+                                                    checked={agreed}
+                                                    onChange={(e) => setAgreed(e.target.checked)}
+                                                    className="h-4 w-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500"
+                                                  />
+                                
+                                                  <label className="text-sm  text-gray-700">
+                                                    I agree to be contacted by Dr. Serena Blake via email or phone.
+                                                  </label>
+                                                </div>
+                                
+                                
+                                                <button
+                                                  type="button"
+                                                  onClick={handleSubmit}
+                                                  disabled={isSubmitting}
+                                                  className={`w-full font-medium py-4 px-6 rounded-lg transition-colors duration-200 
+                                          ${isSubmitting
+                                                      ? 'bg-gray-400 cursor-not-allowed text-white'
+                                                      : 'bg-teal-600 hover:bg-teal-700 text-white'}
+                                        `}
+                                                >
+                                                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                                                </button>
+                                
+                                                <div className="p-1">
+                                                  <p className="text-black flex items-start gap-1 text-sm leading-snug">
+                                                    <span><Info className="text-black mt-0.5 w-4 h-4" /></span>
+                                                    <span>
+                                                      By submitting, you confirm you are 18+ and agree to our{' '}
+                                                      <span className="underline">Privacy Policy & TOS</span> and to receive emails & texts from Serena Blake.
+                                                    </span>
+                                                  </p>
+                                                </div>
+                                              </div>
                             </div>
                         </div>
 
