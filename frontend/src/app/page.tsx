@@ -1,4 +1,5 @@
-import React from 'react'
+"use client";
+import React, { useState } from 'react'
 import Navbar from '@/components/navbar';
 import HeroSection from '@/components/HeroSection';
 import HowWeHelp from '@/components/HowWeHelp';
@@ -14,8 +15,11 @@ import MatthewQuote from '@/components/qute';
 import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/footer';
 import Topbar from '@/components/Topbar';
+import {Popup} from '@/components/popup'; 
 
 const Home = () => {
+ 
+
   return (
     <div>
       <Topbar />
@@ -46,6 +50,11 @@ const Home = () => {
       <MatthewQuote />
       <ContactForm />
       <Footer />
+
+      <Popup 
+        delayMinutes={1}          
+        autoShow={true}                                    
+      />
     </div>
   )
 }
