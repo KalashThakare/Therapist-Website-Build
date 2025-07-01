@@ -21,13 +21,13 @@ const page = () => {
                             relationships and personal well-being.
                         </p>
 
-                        <div className="max-w-md">
+                        <div className="max-w-md border-3 border-[#30494d] rounded-lg">
                             <input
                                 type="text"
                                 placeholder="Search blogs..."
                                 value={searchTerm}
                                 onChange={(e) => setSearchTerm(e.target.value)}
-                                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-teal-500 focus:outline-none text-gray-700 placeholder-gray-500"
+                                className="w-full px-4 py-3  rounded-lg focus:border-teal-500 focus:outline-none text-gray-700 placeholder-gray-500"
                             />
                         </div>
                     </div>

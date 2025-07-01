@@ -1,20 +1,33 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
+import { useRouter, usePathname } from 'next/navigation';
 import { Phone, MapPin, Menu, X, Sparkles, PhoneCall, ChevronDown } from 'lucide-react';
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-   const [isServicesOpen, setIsServicesOpen] = useState(false);
-   const [isAreasOpen, setIsAreasOpen] = useState(false);
+  const [isServicesOpen, setIsServicesOpen] = useState(false);
+  const [isAreasOpen, setIsAreasOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
-  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
-    e.preventDefault();
+  // Handle scroll after navigation
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const targetId = hash.substring(1); // Remove the # symbol
+      setTimeout(() => {
+        scrollToSection(targetId);
+      }, 100); // Small delay to ensure page is loaded
+    }
+  }, [pathname]);
+
+  const scrollToSection = (targetId: string) => {
     const element = document.getElementById(targetId);
     if (element) {
       const navbarHeight = 120;
@@ -25,7 +38,21 @@ const Navbar = () => {
         behavior: 'smooth'
       });
     }
-    setIsMenuOpen(false); 
+  };
+
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
+    e.preventDefault();
+    
+    // Check if we're on the home page
+    if (pathname === '/') {
+      // We're on home page, just scroll
+      scrollToSection(targetId);
+    } else {
+      // We're on a different page, navigate to home with hash
+      router.push(`/#${targetId}`);
+    }
+    
+    setIsMenuOpen(false);
   };
 
   return (
@@ -279,7 +306,7 @@ const Navbar = () => {
                   Contact
                 </Link>
                 <Link 
-                  href="/consultation" 
+                  href="/contact" 
                   className="flex items-center space-x-2 mx-0 mt-6 bg-green-600 hover:bg-green-700 rounded-lg px-4 py-3 text-white font-medium transition-colors duration-200"
                   onClick={() => setIsMenuOpen(false)}
                 >
