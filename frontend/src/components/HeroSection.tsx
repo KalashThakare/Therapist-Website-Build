@@ -130,7 +130,7 @@ const HeroSection = () => {
           </div>
 
           <Link 
-            href="/consultation" 
+            href="/contact" 
             className="inline-flex items-center space-x-3 bg-white text-gray-800 px-8 py-4 rounded-lg hover:bg-gray-100 transition-all duration-300 transform hover:scale-105 shadow-lg font-medium text-lg"
           >
             <Star className="w-5 h-5 text-blue-600" />
