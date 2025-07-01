@@ -61,9 +61,9 @@ export const Popup = ({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center z-50 p-2 sm:p-4">
-      {/* Mobile: Full screen modal, Desktop: Centered popup */}
+     
       <div className="bg-white rounded-lg shadow-2xl w-full max-w-lg mx-2 sm:mx-4 relative animate-fadeIn max-h-[95vh] overflow-y-auto">
-        {/* Close button - Better positioning for mobile */}
+       
         <button
           onClick={handleClose}
           className="absolute top-3 right-3 sm:top-4 sm:right-4 text-gray-400 hover:text-gray-600 transition-colors z-20 w-8 h-8 flex items-center justify-center rounded-full hover:bg-gray-100"
@@ -81,9 +81,8 @@ export const Popup = ({
             </h2>
           </div>
 
-          {/* Content Section - Stack on mobile, side-by-side on desktop */}
           <div className="flex flex-col sm:flex-row items-center gap-4 sm:gap-6 mb-6">
-            {/* Profile Image - Smaller on mobile */}
+
             <div className="flex-shrink-0">
               <div className="w-24 h-24 sm:w-32 sm:h-32 lg:w-36 lg:h-36 rounded-lg overflow-hidden bg-gradient-to-br from-purple-100 to-pink-100">
                 <img
@@ -94,13 +93,11 @@ export const Popup = ({
               </div>
             </div>
 
-            {/* Description - Centered on mobile, left-aligned on desktop */}
             <div className="flex-1 text-center sm:text-left">
               <p className="text-[#274044] text-sm sm:text-base lg:text-lg leading-relaxed mb-4">
                 Take the first step toward personal growth, deeper connections, and inner peace in Los Angeles, CA. Reach out to explore how professional counseling can support you.
               </p>
 
-              {/* Credentials - Centered on mobile, left-aligned on desktop */}
               <div className="space-y-2">
                 <div className="flex items-center justify-center sm:justify-start gap-1">
                   <Star className="w-4 h-4 text-yellow-500 fill-current" />
@@ -115,7 +112,6 @@ export const Popup = ({
             </div>
           </div>
 
-          {/* Buttons - Stack on mobile, side-by-side on larger screens */}
           <div className="flex flex-col sm:flex-row gap-3">
             <button
               onClick={handleClose}
