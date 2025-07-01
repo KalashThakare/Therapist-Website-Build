@@ -173,28 +173,29 @@ export default function ContactPage() {
                 <div>
                   <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-800">Hours</h2>
                   <div className="text-gray-800 space-y-3 text-base sm:text-lg">
-                    <div className="flex">
+                    <div className="flex flex-col sm:flex-row sm:items-center">
                       <span>Monday (Virtual via Zoom):</span>
                       <span>1:00 PM - 5:00 PM</span>
                     </div>
-                    <div className="flex">
+                    <div className="flex flex-col sm:flex-row sm:items-center ">
                       <span>Tuesday (In-person):</span>
                       <span>10:00 AM - 6:00 PM</span>
                     </div>
-                    <div className="flex">
+                    <div className="flex flex-col sm:flex-row sm:items-center">
                       <span>Wednesday (Virtual via Zoom):</span>
                       <span>1:00 PM - 5:00 PM</span>
                     </div>
-                    <div className="flex">
+                    <div className="flex flex-col sm:flex-row sm:items-center ">
                       <span>Thursday (In-person):</span>
                       <span>10:00 AM - 6:00 PM</span>
                     </div>
-                    <div className="flex">
+                    <div className="flex flex-col sm:flex-row sm:items-center">
                       <span>Friday (Virtual via Zoom):</span>
                       <span>1:00 PM - 5:00 PM</span>
                     </div>
                   </div>
                 </div>
+
 
                 <div>
                   <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-gray-800">Contact</h2>
@@ -324,12 +325,13 @@ export default function ContactPage() {
         <div className="bg-[#f4f4fb] border border-black mt-10 rounded-lg p-5">
           <div className="flex gap-1">
             <CircleAlert className="mb-1 text-red-600" />
-            <span className="text-red-600 font-bold text-lg">Please Note:</span>
+            <span className="text-red-600 font-bold text-base sm:text-lg">Please Note:</span>
           </div>
-          <h2 className="text-lg text-blue-600">
+          <h2 className="text-base sm:text-lg text-blue-600 mt-2">
             I do not take insurance directly. However, I can provide you with a billing sheet with the necessary facts and codes so you can file for <span className="font-bold">out-of-network benefits</span> with your insurance company.
           </h2>
         </div>
+
       </div>
     </div>
   );

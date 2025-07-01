@@ -1,22 +1,34 @@
 "use client"
 import React from 'react';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import {Phone} from "lucide-react";
 
 const Footer: React.FC = () => {
+  const router = useRouter();
+
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
     e.preventDefault();
-    const element = document.getElementById(targetId);
-    if (element) {
-      const navbarHeight = 120;
-      const elementPosition = element.offsetTop - navbarHeight;
-      
-      window.scrollTo({
-        top: elementPosition,
-        behavior: 'smooth'
-      });
+    
+    // Check if we're on the home page
+    if (window.location.pathname === '/') {
+      // We're on home page, scroll directly
+      const element = document.getElementById(targetId);
+      if (element) {
+        const navbarHeight = 120;
+        const elementPosition = element.offsetTop - navbarHeight;
+        
+        window.scrollTo({
+          top: elementPosition,
+          behavior: 'smooth'
+        });
+      }
+    } else {
+      // We're on a different page, navigate to home with hash
+      router.push(`/#${targetId}`);
     }
   };
+
   return (
     <footer className="bg-[#244344] text-gray-300 py-12 px-10">
       <div className="max-w-5xl mx-auto">
@@ -79,7 +91,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a 
-                  href="#testimonials" 
+                  href="/#testimonials" 
                   onClick={(e) => handleSmoothScroll(e, 'testimonials')}
                   className="text-gray-300 hover:text-white hover:underline transition-colors cursor-pointer"
                 >
@@ -88,7 +100,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a 
-                  href="#about" 
+                  href="/#about" 
                   onClick={(e) => handleSmoothScroll(e, 'about')}
                   className="text-gray-300 hover:text-white hover:underline transition-colors cursor-pointer"
                 >
@@ -97,7 +109,7 @@ const Footer: React.FC = () => {
               </li>
               <li>
                 <a 
-                  href="#faq" 
+                  href="/#faq" 
                   onClick={(e) => handleSmoothScroll(e, 'faq')}
                   className="text-gray-300 hover:text-white hover:underline transition-colors cursor-pointer"
                 >
