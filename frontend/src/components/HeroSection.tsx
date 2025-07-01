@@ -13,12 +13,9 @@ const HeroSection = () => {
   ];
 
   const rotatingTexts = [
-    'Greater Purpose in Your Life Direction',
-    'Deeper Spiritual Connection',
-    'Healing from Past Trauma',
-    'Stronger Relationships',
-    'Inner Peace and Joy',
-    'Clarity in Life Decisions'
+    "Anxiety & Stress Management ",
+    "Relationship Counseling ",
+    "Trauma Recovery"
   ];
 
   //auto image changing
@@ -70,11 +67,11 @@ const HeroSection = () => {
       <div className="relative z-20 flex items-center justify-center h-full">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="mt-2 text-lg sm:text-xl font-light text-white">
-                  Christian Counseling Services in Richmond & Central Virginia
+                  Counseling Services in Los Angeles, California
                 </span>
           {/* Main Heading */}
           <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-white m-5 ">
-            Professional Counseling for Christian Healing and Growth
+            Professional Counseling for Healing, Growth, and Resilience
           </h1>
 
           {/* Subheading */}
@@ -90,7 +87,7 @@ const HeroSection = () => {
           </div>
 
           {/* Animated Rotating Text */}
-          <div className="mb-2 h-16 flex items-center justify-center">
+          <div className="mb-2 h-12 flex items-center justify-center">
             <div className="relative w-full max-w-4xl h-full overflow-hidden">
               {rotatingTexts.map((text, index) => (
                 <div
@@ -103,8 +100,8 @@ const HeroSection = () => {
                         : 'translate-y-full opacity-0'
                   }`}
                 >
-                  <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-blue-300 text-center px-4">
-                    ✨ {text}
+                  <h2 className="text-lg sm:text-xl lg:text-2xl font-bold text-[#b8d3d3] text-center px-4">
+                    {text}
                   </h2>
                 </div>
               ))}

@@ -16,7 +16,7 @@ const HeroSectionUI = ({
     showMedia: true
   },
   buttonText = 'Start Healing Today',
-  buttonLink = '/consultation'
+  buttonLink = '/contact'
 }) => {
   return (
     <section className="relative h-screen w-full overflow-hidden">

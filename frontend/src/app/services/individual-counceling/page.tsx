@@ -266,8 +266,8 @@ const page = () => {
             <Topbar />
             <Navbar />
             <HeroSectionUI
-                mainHeading='Faith-Based Therapy for Anxiety, Identity & Inner Healing in Richmond, VA'
-                subtitle="Discover Peace, Purpose, and God's Truth in Richmond, VA."
+                mainHeading="Faith-Based Therapy for Anxiety, Identity & Inner Healing in Los Angeles, CA"
+                subtitle="Discover Peace, Purpose, and God's Truth in Los Angeles, CA"
                 backgroundImage='/recovery.jpg'
             />
             <div className="min-h-screen bg-gray-50 py-16 px-4">
@@ -279,7 +279,7 @@ const page = () => {
                             {/* Header Badge */}
                             <div className="inline-block">
                                 <span className="bg-[#bddade] text-teal-800 px-4 py-2 rounded-full text-sm font-medium">
-                                    Christian Therapy for Personal Struggles | Richmond, VA
+                                    Therapy for Personal Struggles | Los Angeles, CA
                                 </span>
                             </div>
 

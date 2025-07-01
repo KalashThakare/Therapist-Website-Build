@@ -14,7 +14,7 @@ const StatsSection = () => {
     <section className="bg-slate-600 py-16 px-4" ref={ref}>
       <div className="max-w-6xl mx-auto">
         <div className="grid md:grid-cols-2 gap-12 items-center">
-          
+
           {/* First Stat */}
           <div className="text-center md:text-left">
             <div className="text-5xl md:text-6xl font-bold text-white mb-4">
@@ -22,7 +22,8 @@ const StatsSection = () => {
                 <CountUp
                   start={0}
                   end={40}
-                  duration={2.5}
+                  duration={1.5}
+                  delay={0.5}
                   suffix="+"
                   useEasing={true}
                   separator=","
@@ -44,7 +45,8 @@ const StatsSection = () => {
                 <CountUp
                   start={0}
                   end={45000}
-                  duration={2}
+                  duration={1.2}
+                  delay={0.5}
                   suffix="+"
                   useEasing={true}
                   separator=","

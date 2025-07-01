@@ -7,7 +7,7 @@ import Testimonials from '@/components/Testimonials';
 import Topbar from '@/components/Topbar';
 import HeroSectionUI from '@/components/ui/hero-ui';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
-import { BookHeart, BookOpen, Calendar, CheckCircle, ChevronDown, Clock, Heart, Info, Phone, PhoneCall, ShieldCheck, Sparkles, UserCheck } from 'lucide-react';
+import { BookHeart, BookOpen, Calendar, CheckCircle, ChevronDown, Clock, Heart, HeartHandshake, Info, Phone, PhoneCall, ShieldCheck, Sparkles, UserCheck, Users } from 'lucide-react';
 import React, { JSX, useState } from 'react'
 import { toast, Toaster } from 'sonner';
 
@@ -21,8 +21,7 @@ interface FormData {
 
 interface ServiceItem {
     id: string;
-    title: string;
-    icon: JSX.Element;
+    title: string,
     description: string;
     expanded: boolean;
     details: string;
@@ -190,61 +189,59 @@ const page = () => {
 
     const services = [
         {
-            title: 'Feelings of Unworthiness',
-            description: 'You know what the Bible says, but still feel like you\'re not enough. Shame and guilt cloud your self-image and make it hard to believe you\'re truly loved.',
+            title: "Endless 'Repeater Arguments'",
+            description: 'You find yourselves stuck on the same issue, unable to truly resolve it. This cycle erodes intimacy and trust.',
             borderColor: 'border-l-green-400'
         },
         {
-            title: 'Persistent Anxiety or Sadness',
-            description: 'You\'re stuck in worry, fear, or emotional heaviness that keeps you from living freely. You want faith to speak louder than fear.',
+            title: 'Communication Breakdown',
+            description: 'Words wound more than intended. You long to speak and be heard with kindness, but frustration keeps you apart.',
             borderColor: 'border-l-green-400'
         },
         {
-            title: 'Feeling Distant From God',
-            description: 'Your faith feels dry or confused. You\'re not sure how to hear God clearly anymore or what His plan is for your life.',
+            title: 'Loss of Intimacy & Connection',
+            description: 'Physical or emotional distance grows. You miss the closeness you once had and wonder if it can be restored.',
             borderColor: 'border-l-green-400'
         },
         {
-            title: 'Wounds From the Past',
-            description: 'Old hurts continue to affect your thoughts, habits, and relationships. You\'re ready for healing — not just coping.',
+            title: 'Spiritual Misalignment',
+            description: 'Although you both follow Christ, you feel out of sync in prayer life, purpose, or church involvement, causing tension.',
             borderColor: 'border-l-green-400'
         }
     ];
 
     const features = [
-        { icon: <UserCheck className="w-5 h-5 text-yellow-300" />, text: 'Personalized, Christ-Centered Care' },
-        { icon: <Heart className="w-5 h-5 text-red-600" />, text: 'Compassionate, Non-Judgmental Space' },
-        { icon: <BookHeart className="w-5 h-5 text-green-400" />, text: 'Faith + Therapy = Healing' },
-        { icon: <ShieldCheck className="w-5 h-5 text-sky-500" />, text: 'Over 35 Years of Experience' }
+        { icon: <Users className="w-5 h-5 text-yellow-300" />, text: '40+ Years of Experience with Couples' },
+        { icon: <BookHeart className="w-5 h-5 text-red-600" />, text: 'Scripture-Based Conflict Resolution' },
+        { icon: <HeartHandshake className="w-5 h-5 text-green-400" />, text: 'Focus on Forgiveness & Trust' },
+        { icon: <ShieldCheck className="w-5 h-5 text-sky-500" />, text: 'Safe & Non-Judgmental Environment' }
     ];
 
     const [serviceList, setServices] = useState<ServiceItem[]>([
         {
             id: 'christian-cbt',
-            title: 'Christian Cognitive Behavioral Therapy (CBT)',
-            icon: <BookOpen className="w-5 h-5 text-blue-600" />,
-            description: 'Identify and replace unhealthy thinking patterns using CBT techniques infused with biblical truths to restore clarity, hope, and peace.',
+            title: '🤝 Strengths-Based Marital Assessment',
+            
+            description: "Identify and build upon each spouse's individual and shared strengths, so you can face challenges united rather than divided.",
             expanded: true,
             details: 'Through biblical wisdom and proven techniques, we help you overcome inner struggles and reconnect with your true identity in Christ. Our approach combines evidence-based CBT methods with scriptural foundations to provide lasting transformation.',
-            buttonText: 'Learn More About Faith-Integrated CBT'
+            buttonText: 'Discover Your Couple Strengths'
         },
         {
             id: 'healing-prayer',
-            title: 'Healing Prayer & Identity Work',
-            icon: <Sparkles className="w-5 h-5 text-yellow-600" />,
-            description: 'Discover your true identity in Christ through guided prayer sessions and biblical identity work that addresses root causes of emotional wounds.',
+            title: "💬 Conflict Resolution & 'Repeater Argument' Work",
+            description: 'Pinpoint that one recurring fight that never gets resolved. Learn tools to break the cycle and experience renewed intimacy.',
             expanded: false,
             details: 'Experience the transformative power of healing prayer combined with identity work rooted in Scripture. We address deep-seated wounds and help you understand who you are in God\'s eyes.',
-            buttonText: 'Explore Healing Prayer Sessions'
+            buttonText: 'Break the Cycle of Conflict'
         },
         {
             id: 'spiritual-exploration',
-            title: 'Creative Spiritual Exploration',
-            icon: <Heart className="w-5 h-5 text-pink-600" />,
-            description: 'Explore your relationship with God through creative expressions, journaling, and spiritual practices designed to deepen your faith journey.',
+            title: '🙏 Healing Prayer & Forgiveness',
+            description: 'Invite God into your marriage. Practice prayer, repentance, and forgiveness to clear away hurts and rebuild trust on a biblical foundation.',
             expanded: false,
             details: 'Engage with your spirituality through various creative mediums and practices. This approach helps you connect with God in new and meaningful ways while addressing personal growth.',
-            buttonText: 'Begin Creative Spiritual Journey'
+            buttonText: 'Experience Healing Prayer'
         }
     ]);
 
@@ -266,8 +263,8 @@ const page = () => {
             <Topbar />
             <Navbar />
             <HeroSectionUI
-                mainHeading='Faith-Based Therapy for Anxiety, Identity & Inner Healing in Richmond, VA'
-                subtitle="Discover Peace, Purpose, and God's Truth in Richmond, VA."
+                mainHeading='Strengthen Your Marriage & Faith in Los Angeles, CA'
+                subtitle="Heal Your Relationship, Grow Closer to God Together in Los Angeles."
                 backgroundImage='/holding.jpg'
             />
             <div className="min-h-screen bg-gray-50 py-16 px-4">
@@ -279,18 +276,18 @@ const page = () => {
                             {/* Header Badge */}
                             <div className="inline-block">
                                 <span className="bg-[#bddade] text-teal-800 px-4 py-2 rounded-full text-sm font-medium">
-                                    Christian Therapy for Personal Struggles | Richmond, VA
+                                    Therapy for Personal Struggles | Los Angeles, CA
                                 </span>
                             </div>
 
                             {/* Main Heading */}
                             <div className="space-y-5">
                                 <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight" >
-                                    Struggling With Anxiety, Unworthiness, or Spiritual Confusion?
+                                    Stuck in the Same Argument? Feeling Distant or Unheard?
                                 </h1>
 
                                 <p className="text-gray-700 text-lg leading-relaxed">
-                                    You were created in the image of God — but life's wounds can obscure that truth. Counseling helps you rediscover who you are in Christ.
+                                    Marriage is meant to reflect Christ's love. Counseling can remove the barriers that keep you from unity and joy.
                                 </p>
                             </div>
 
@@ -311,7 +308,7 @@ const page = () => {
                             {/* Action Buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 pt-2">
                                 <button className="px-5 py-3 bg-[#283f44] text-white rounded-md hover:bg-gray-700 transition-colors duration-200 font-medium">
-                                    Find Healing Through Christ
+                                    Find Healing 
                                 </button>
                                 <button className="px-5 py-3 border-2 border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors duration-200 font-medium">
                                     See How I Work
@@ -323,15 +320,17 @@ const page = () => {
                         <div className="relative mt-5">
                             <div className="relative rounded-2xl overflow-hidden">
                                 <img
-                                    src="/healing.jpg"
+                                    src="/couple-counceling.jpg"
                                     alt="Person in contemplative prayer"
                                     className="w-full h-full object-cover"
                                 />
 
+                                <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-black/30 to-transparent"></div>
+
                                 {/* Overlay Content */}
                                 <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/70 to-transparent p-8">
                                     <h2 className="text-white text-2xl lg:text-3xl font-bold mb-6">
-                                        You Are God's Masterpiece — Let's Uncover That Truth
+                                        Let God's Love Rekindle Your Union
                                     </h2>
 
                                     {/* Feature Badges */}
@@ -359,15 +358,13 @@ const page = () => {
                     {/* Header Section */}
                     <div className="mb-8">
                         <div className="text-sm text-gray-600 mb-2 bg-[#dee9fc] inline-block p-2 rounded-lg">
-                            Counseling for Individuals | Maplewood Drive, LA
+                            Counseling for Couples | Maplewood Drive, LA
                         </div>
                         <h1 className="text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                            A Faith-Based Path Toward<br />
-                            <span className="text-gray-800">Wholeness</span>
+                            A Compassionate Path for Couples
                         </h1>
                         <p className="text-lg text-gray-600 max-w-2xl">
-                            Through biblical wisdom and proven techniques, Ellie helps you overcome inner
-                            struggles and reconnect with your true identity in Christ.
+                            Serena guides you both through proven therapeutic methods to heal, communicate, and grow in love.
                         </p>
                     </div>
 
@@ -378,10 +375,11 @@ const page = () => {
                             <div className="relative">
                                 <div className="rounded-2xl overflow-hidden shadow-xl">
                                     <img
-                                        src="/hands.jpg"
+                                        src="/couple-hand.jpg"
                                         alt="Hands reaching toward light through foliage"
                                         className="w-full h-80 lg:h-96 object-cover"
                                     />
+                                    
                                 </div>
                             </div>
                         </div>
@@ -399,9 +397,6 @@ const page = () => {
                                     >
                                         <div className="flex items-center justify-between mb-1">
                                             <div className="flex items-center space-x-3">
-                                                <div className="flex-shrink-0">
-                                                    {service.icon}
-                                                </div>
                                                 <h3 className="text-lg font-semibold text-gray-900">
                                                     {service.title}
                                                 </h3>

@@ -50,7 +50,7 @@ const About: React.FC<AboutProps> = ({ bgColor = "#bddade" }) => {
 
                     {/* right Content */}
                     <div className="space-y-6">
-                        <div className="rounded-lg bg-[#fcf3cc] text-black px-4 py-2 sm:px-6 md:px-8 lg:px-10">
+                        <div className="rounded-lg bg-[#fcf3cc] text-black px-4 py-2 sm:px-6 md:px-8 lg:px-10 inline-block">
                             <h2 className="text-xs sm:text-sm font-light">
                                 About Dr. Serena Blake, PsyD – Clinical Psychologist in Los Angeles, CA
                             </h2>
