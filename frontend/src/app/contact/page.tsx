@@ -2,6 +2,7 @@
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import Testimonials from '@/components/Testimonials';
+import Topbar from '@/components/Topbar';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
 import { Info, Phone, PhoneCall } from 'lucide-react';
 import { useState } from 'react';
@@ -181,6 +182,7 @@ const TherapistContact = () => {
                 expand={true}
                 richColors
             />
+            <Topbar />
             <Navbar />
             <div className="w-full bg-gray-50 py-16 px-4">
                 <div className="max-w-7xl mx-auto">

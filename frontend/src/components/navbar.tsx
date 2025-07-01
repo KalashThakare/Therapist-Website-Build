@@ -121,20 +121,6 @@ const Navbar = () => {
       <LoadingOverlay />
       
       <div className="w-full sticky top-0 z-50">
-        {/* Top bar */}
-        <div className="bg-[#fff0ec] border-b border-gray-200 py-2 px-4">
-          <div className="max-w-7xl mx-auto flex justify-between items-center text-sm text-gray-700">
-            <div className="flex items-center space-x-1">
-              <PhoneCall className="w-4 h-4" />
-              <span>(323) 555-0192</span>
-            </div>
-            <div className="flex items-center space-x-1">
-              <MapPin className="w-4 h-4" />
-              <span>1287 Maplewood Drive, Los Angeles, CA 90026</span>
-            </div>
-          </div>
-        </div>
-
         {/* navbar */}
         <nav className="bg-[#e5ecf1] shadow-sm border-b">
           <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
@@ -340,14 +326,14 @@ const Navbar = () => {
                     }}
                     className="block w-full text-left px-4 py-3 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
                   >
-                    Services
+                    How I Help
                   </button>
                   <a 
                     href="#about" 
                     onClick={(e) => handleSmoothScroll(e, 'about')}
                     className="block px-4 py-3 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200 cursor-pointer"
                   >
-                    About
+                    About Me
                   </a>
                   <a 
                     href="#testimonials" 
@@ -380,16 +366,6 @@ const Navbar = () => {
                     className="block w-full text-left px-4 py-3 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
                   >
                     Contact
-                  </button>
-                  <button 
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      handleNavigation('/contact');
-                    }}
-                    className="flex items-center space-x-2 mx-0 mt-6 bg-green-600 hover:bg-green-700 rounded-lg px-4 py-3 text-white font-medium transition-colors duration-200 w-full"
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    <span>Get Started</span>
                   </button>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 "use client";
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
+import Topbar from '@/components/Topbar';
 import { MapPin, Phone, Calendar, Settings } from 'lucide-react';
 import { div } from 'motion/react-client';
 
@@ -31,6 +32,7 @@ const TherapyLocations = () => {
 
     return (
         <div>
+            <Topbar />
             <Navbar />
             <div className="w-full bg-gray-50 py-16 px-4">
                 <div className="max-w-7xl mx-auto">

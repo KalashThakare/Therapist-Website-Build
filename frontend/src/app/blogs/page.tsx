@@ -1,6 +1,7 @@
 "use client"
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
+import Topbar from '@/components/Topbar';
 import { div } from 'motion/react-client';
 import React, { useState } from 'react';
 
@@ -9,6 +10,7 @@ const page = () => {
 
     return (
         <div>
+            <Topbar />
             <Navbar />
             <section className="bg-gray-50 py-16 px-4 min-h-screen">
                 <div className="max-w-7xl mx-auto">

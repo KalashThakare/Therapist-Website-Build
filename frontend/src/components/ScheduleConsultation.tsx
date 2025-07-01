@@ -1,6 +1,7 @@
 "use client"
 import React from 'react';
 import { Sparkles } from 'lucide-react';
+import Link from 'next/link';
 
 const ScheduleConsultation = () => {
   return (
@@ -27,7 +28,7 @@ const ScheduleConsultation = () => {
           <div className="flex-shrink-0">
             <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-white hover:text-slate-700 transition-all duration-300 flex items-center gap-2">
               <Sparkles />
-              Start Healing
+              <Link href={"/contact"}>Start Healing</Link>
             </button>
           </div>
         </div>

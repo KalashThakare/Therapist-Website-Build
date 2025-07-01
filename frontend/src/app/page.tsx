@@ -13,10 +13,12 @@ import FAQ from '@/components/Faq';
 import MatthewQuote from '@/components/qute';
 import ContactForm from '@/components/ContactForm';
 import Footer from '@/components/footer';
+import Topbar from '@/components/Topbar';
 
 const Home = () => {
   return (
     <div>
+      <Topbar />
       <Navbar />
       <HeroSection />
       <StatsSection />
