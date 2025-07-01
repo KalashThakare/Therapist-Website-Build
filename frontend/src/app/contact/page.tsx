@@ -1,8 +1,19 @@
+"use client";
 import Footer from '@/components/footer';
 import Navbar from '@/components/navbar';
 import Testimonials from '@/components/Testimonials';
 import { InfiniteMovingCards } from '@/components/ui/infinite-moving-cards';
 import { Info, Phone, PhoneCall } from 'lucide-react';
+import { useState } from 'react';
+import { toast, Toaster } from 'sonner';
+
+interface FormData {
+    name: string;
+    email: string;
+    phone: string;
+    message: string;
+    time: string
+}
 
 const testimonials = [
 
@@ -34,15 +45,149 @@ const testimonials = [
 ];
 
 const TherapistContact = () => {
+
+    const [formData, setFormData] = useState<FormData>({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        time: ''
+    });
+
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [agreed, setAgreed] = useState(false);
+
+
+    const validateEmail = (email: string): boolean => {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    };
+
+    const validatePhone = (phone: string): boolean => {
+        if (!phone.trim()) return true; // Phone is optional
+        const phoneRegex = /^[\+]?[(]?[\d\s\-\(\)]{10,}$/;
+        return phoneRegex.test(phone.replace(/\s/g, ''));
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
+        const { name, value } = e.target;
+
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+
+
+
+    const validateForm = (): boolean => {
+        // Check if name is empty
+        if (!formData.name.trim()) {
+            toast.error('Please enter your name');
+            return false;
+        }
+
+        // Check if name is too short
+        if (formData.name.trim().length < 2) {
+            toast.error('Name must be at least 2 characters long');
+            return false;
+        }
+
+        // Check if email is empty
+        if (!formData.email.trim()) {
+            toast.error('Please enter your email address');
+            return false;
+        }
+
+        // Check if email is valid
+        if (!validateEmail(formData.email)) {
+            toast.error('Please enter a valid email address');
+            return false;
+        }
+
+        // Check phone if provided
+        if (formData.phone.trim() && !validatePhone(formData.phone)) {
+            toast.error('Please enter a valid phone number');
+            return false;
+        }
+
+        if (!formData.time) {
+            toast.error("Please enter prefered time to reach you")
+        }
+
+        return true;
+    };
+
+    const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+
+        if (!validateForm()) {
+            return;
+        }
+
+        if (!agreed) {
+            toast.error('Please agree to be contacted before submitting.');
+            return false;
+        }
+
+        setIsSubmitting(true);
+
+        try {
+            // Prepare data for backend
+            const submitData = {
+
+            };
+
+            
+            const res = await fetch('/api/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(submitData),
+            });
+
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+
+            const result = await res.json();
+
+            // Success
+            toast.success('Message sent successfully! Dr. Blake will contact you within one business day.');
+
+            // Reset form
+            setFormData({
+                name: '',
+                email: '',
+                phone: '',
+                message: '',
+                time: ''
+            });
+
+        } catch (error) {
+            console.error('Form submission error:', error);
+            toast.error('Failed to send message. Please try again or call directly.');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div>
+            <Toaster
+                position="top-center"
+                expand={true}
+                richColors
+            />
             <Navbar />
             <div className="w-full bg-gray-50 py-16 px-4">
                 <div className="max-w-7xl mx-auto">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
-                        {/* Left Side - Therapist Info */}
+                        {/* Therapist Info */}
                         <div className="space-y-8">
-                            {/* Profile Image */}
+
                             <div className="w-48 h-64 bg-gray-300 rounded-lg overflow-hidden">
                                 <img
                                     src="/serenBlake.jpg"
@@ -66,132 +211,147 @@ const TherapistContact = () => {
                             </div>
                         </div>
 
-                        {/* Right Side - Contact Form */}
-                        <div className="space-y-6">
+                        {/* Contact Form */}
+                        <div className="bg-white border-2 border-gray-300 rounded-xl p-8 shadow-2xl">
+                            <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Get In Touch</h2>
 
-                            <div className='w-full flex justify-center items-center'>
-                                <button className=" bg-teal-100 hover:bg-teal-200 text-teal-800 font-medium py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-3 border border-teal-200">
-                                <PhoneCall className="w-5 h-5" />
-                                Call Dr. Serena Blake
-                            </button>
-                            </div>
+                            <p className="text-gray-600 text-center mb-8 leading-relaxed">
+                                Simply fill out the brief fields below and Ellie will be in touch with you soon, usually within one business day.
+                                This form is safe, private, and completely free.
+                            </p>
 
-                            {/* OR Divider */}
-                            <div className="text-center">
-                                <span className="text-2xl font-bold text-gray-800">OR</span>
-                            </div>
+                            <div className="space-y-6">
 
-                            {/* Contact Form */}
-                            <div className="bg-white border-2 border-gray-300 rounded-xl p-8 shadow-2xl">
-                                <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">
-                                    Get In Touch
-                                </h2>
+                                <div>
+                                    <label className="block text-gray-700 font-medium mb-2">Name</label>
+                                    <input
+                                        type="text"
+                                        name="name"
+                                        value={formData.name}
+                                        onChange={handleInputChange}
+                                        placeholder="Name"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                                    />
+                                </div>
 
-                                <p className="text-gray-600 text-center mb-8 leading-relaxed">
-                                    Simply fill out the brief fields below and Ellie will be in touch
-                                    with you soon, usually within one business day. This form is
-                                    safe, private, and completely free.
-                                </p>
+                                <div>
+                                    <label className="block text-gray-700 font-medium mb-2">Email</label>
+                                    <input
+                                        type="email"
+                                        name="email"
+                                        value={formData.email}
+                                        onChange={handleInputChange}
+                                        placeholder="you@example.com"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                                    />
+                                </div>
 
-                                <div className="space-y-6">
-                                    {/* Name Field */}
-                                    <div>
-                                        <label className="block text-gray-700 font-medium mb-2">
-                                            Name
-                                        </label>
-                                        <input
-                                            type="text"
-                                            placeholder="Name"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
-                                        />
-                                    </div>
+                                <div>
+                                    <label className="block text-gray-700 font-medium mb-2">Phone</label>
+                                    <input
+                                        type="tel"
+                                        name="phone"
+                                        value={formData.phone}
+                                        onChange={handleInputChange}
+                                        placeholder="(555) 234-5678"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                                    />
+                                </div>
 
-                                    {/* Email Field */}
-                                    <div>
-                                        <label className="block text-gray-700 font-medium mb-2">
-                                            Email
-                                        </label>
-                                        <input
-                                            type="email"
-                                            placeholder="you@example.com"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
-                                        />
-                                    </div>
+                                <div>
+                                    <label className="block text-gray-700 font-medium mb-2">Message</label>
+                                    <textarea
+                                        name="message"
+                                        value={formData.message}
+                                        onChange={handleInputChange}
+                                        rows={2}
+                                        placeholder="What brings you here?"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors resize-vertical"
+                                    />
+                                </div>
 
-                                    {/* Phone Field */}
-                                    <div>
-                                        <label className="block text-gray-700 font-medium mb-2">
-                                            Phone
-                                        </label>
-                                        <input
-                                            type="tel"
-                                            placeholder="(555) 234-5678"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
-                                        />
-                                    </div>
+                                <div>
+                                    <label className="block text-gray-700 font-medium mb-2">Preferred time to reach you</label>
+                                    <input
+                                        type="text"
+                                        name="time"
+                                        value={formData.time}
+                                        onChange={handleInputChange}
+                                        placeholder="time"
+                                        className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                                    />
+                                </div>
 
-                                    {/* Message Field */}
-                                    <div>
-                                        <label className="block text-gray-700 font-medium mb-2">
-                                            Message
-                                        </label>
-                                        <textarea
-                                            rows={2}
-                                            placeholder="How can I help you?"
-                                            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors resize-vertical"
-                                        />
-                                    </div>
+                                <div className="flex items-center space-x-2">
+                                    <input
+                                        type="checkbox"
+                                        id="agree"
+                                        name="agree"
+                                        checked={agreed}
+                                        onChange={(e) => setAgreed(e.target.checked)}
+                                        className="h-4 w-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500"
+                                    />
 
-                                    {/* Submit Button */}
-                                    <button
-                                        type="button"
-                                        className="w-full bg-teal-600 hover:bg-teal-700 text-white font-medium py-4 px-6 rounded-lg transition-colors duration-200"
-                                    >
-                                        Send Message
-                                    </button>
-                                    <div className="p-1">
-                                        <p className="text-black flex items-start gap-1 text-sm leading-snug">
-                                            <span>
-                                                <Info className="text-black mt-0.5 w-4 h-4" />
-                                            </span>
-                                            <span>
-                                                By submitting, you confirm you are 18+ and agree to our{' '}
-                                                <span className="underline">Privacy Policy & TOS</span> and to receive emails & texts from Serena Blake.
-                                            </span>
-                                        </p>
-                                    </div>
+                                    <label className="text-sm  text-gray-700">
+                                        I agree to be contacted by Dr. Serena Blake via email or phone.
+                                    </label>
+                                </div>
+
+
+                                <button
+                                    type="button"
+                                    onClick={handleSubmit}
+                                    disabled={isSubmitting}
+                                    className={`w-full font-medium py-4 px-6 rounded-lg transition-colors duration-200 
+          ${isSubmitting
+                                            ? 'bg-gray-400 cursor-not-allowed text-white'
+                                            : 'bg-teal-600 hover:bg-teal-700 text-white'}
+        `}
+                                >
+                                    {isSubmitting ? 'Sending...' : 'Send Message'}
+                                </button>
+
+                                <div className="p-1">
+                                    <p className="text-black flex items-start gap-1 text-sm leading-snug">
+                                        <span><Info className="text-black mt-0.5 w-4 h-4" /></span>
+                                        <span>
+                                            By submitting, you confirm you are 18+ and agree to our{' '}
+                                            <span className="underline">Privacy Policy & TOS</span> and to receive emails & texts from Serena Blake.
+                                        </span>
+                                    </p>
                                 </div>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
-            
+
             <div className="min-h-screen bg-gray-50 py-16 px-4">
-                        <div className="max-w-7xl mx-auto mb-16">
-                            <div className="rounded-lg bg-[#fcf3cc] text-black px-4 py-2 sm:px-6 md:px-8 lg:px-10 mb-5 inline-block">
-                                <h2 className="text-xs sm:text-sm font-light">
-                                    Client Success Stories & Testimonials
-                                </h2>
-                            </div>
-                            <h1 className="text-5xl md:text-5xl font-bold text-[#345048] mb-6">
-                                What Former Clients Say
-                            </h1>
-                            <p className="text-lg text-gray-600 mx-auto mb-8">
-                                Here's what former clients have had to say about working with Serena Blake
-                            </p>
-            
-                        </div>
-            
-                        <div className="relative overflow-hidden max-w-5xl mx-auto">
-                            <InfiniteMovingCards
-                                items={testimonials}
-                                direction="right"
-                                speed="slow"
-                                cardBgColor='#bddade'
-                            />
-                        </div>
+                <div className="max-w-7xl mx-auto mb-16">
+                    <div className="rounded-lg bg-[#fcf3cc] text-black px-4 py-2 sm:px-6 md:px-8 lg:px-10 mb-5 inline-block">
+                        <h2 className="text-xs sm:text-sm font-light">
+                            Client Success Stories & Testimonials
+                        </h2>
                     </div>
+                    <h1 className="text-5xl md:text-5xl font-bold text-[#345048] mb-6">
+                        What Former Clients Say
+                    </h1>
+                    <p className="text-lg text-gray-600 mx-auto mb-8">
+                        Here's what former clients have had to say about working with Serena Blake
+                    </p>
+
+                </div>
+
+                <div className="relative overflow-hidden max-w-5xl mx-auto">
+                    <InfiniteMovingCards
+                        items={testimonials}
+                        direction="right"
+                        speed="slow"
+                        cardBgColor='#bddade'
+                    />
+                </div>
+            </div>
 
             <Footer />
         </div>

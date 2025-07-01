@@ -192,7 +192,7 @@ const Navbar = () => {
               </Link>
               
               <Link 
-                href="/consultation" 
+                href="/contact" 
                 className="flex items-center space-x-2 bg-white border border-gray-700 rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors duration-200"
               >
                 <Sparkles className="w-4 h-4" />

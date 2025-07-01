@@ -1,38 +1,154 @@
 "use client";
 import React, { useState } from 'react';
-import { Info, CircleAlert } from "lucide-react";
+import { Info, CircleAlert, AlertCircle } from "lucide-react";
+import { toast, Toaster } from 'sonner';
 
 interface FormData {
   name: string;
   email: string;
   phone: string;
   message: string;
+  time: string;
 }
+
 
 export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     phone: '',
-    message: ''
+    message: '',
+    time: ''
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [agreed, setAgreed] = useState(false);
+
+
+  const validateEmail = (email: string): boolean => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailRegex.test(email);
+  };
+
+  const validatePhone = (phone: string): boolean => {
+    if (!phone.trim()) return true; // Phone is optional
+    const phoneRegex = /^[\+]?[(]?[\d\s\-\(\)]{10,}$/;
+    return phoneRegex.test(phone.replace(/\s/g, ''));
+  };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>): void => {
     const { name, value } = e.target;
+
     setFormData(prev => ({
       ...prev,
       [name]: value
     }));
   };
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>): void => {
+
+
+
+  const validateForm = (): boolean => {
+    // Check if name is empty
+    if (!formData.name.trim()) {
+      toast.error('Please enter your name');
+      return false;
+    }
+
+    // Check if name is too short
+    if (formData.name.trim().length < 2) {
+      toast.error('Name must be at least 2 characters long');
+      return false;
+    }
+
+    // Check if email is empty
+    if (!formData.email.trim()) {
+      toast.error('Please enter your email address');
+      return false;
+    }
+
+    // Check if email is valid
+    if (!validateEmail(formData.email)) {
+      toast.error('Please enter a valid email address');
+      return false;
+    }
+
+    // Check phone if provided
+    if (formData.phone.trim() && !validatePhone(formData.phone)) {
+      toast.error('Please enter a valid phone number');
+      return false;
+    }
+
+    if (!formData.time) {
+      toast.error("Please enter prefered time to reach you")
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission here
+
+    if (!validateForm()) {
+      return;
+    }
+
+    if (!agreed) {
+      toast.error('Please agree to be contacted before submitting.');
+      return false;
+    }
+
+    setIsSubmitting(true);
+
+    try {
+      // Prepare data for backend
+      const submitData = {
+
+      };
+
+
+      const res = await fetch('/api/', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(submitData),
+      });
+
+      if (!res.ok) {
+        throw new Error(`HTTP error! status: ${res.status}`);
+      }
+
+      const result = await res.json();
+
+      // Success
+      toast.success('Message sent successfully! Dr. Blake will contact you within one business day.');
+
+      // Reset form
+      setFormData({
+        name: '',
+        email: '',
+        phone: '',
+        message: '',
+        time: ''
+      });
+
+    } catch (error) {
+      console.error('Form submission error:', error);
+      toast.error('Failed to send message. Please try again or call directly.');
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
     <div className="min-h-screen bg-[#bddade] py-12 px-4 sm:px-6 lg:px-8">
+      <Toaster
+        position="top-center"
+        expand={true}
+        richColors
+      />
+
       <div className="max-w-7xl mx-auto">
         {/* Main Content Card */}
         <div className="overflow-hidden">
@@ -57,15 +173,15 @@ export default function ContactPage() {
                 <div>
                   <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-800">Hours</h2>
                   <div className="text-gray-800 space-y-3 text-base sm:text-lg">
-                    <div className="flex">
+                    <div className="flex justify-between">
                       <span>Monday:</span>
                       <span>12:00 PM - 8:00 PM</span>
                     </div>
-                    <div className="flex">
+                    <div className="flex justify-between">
                       <span>Tuesday:</span>
                       <span>12:00 PM - 8:00 PM</span>
                     </div>
-                    <div className="flex">
+                    <div className="flex justify-between">
                       <span>Wednesday:</span>
                       <span>9:00 AM - 6:00 PM</span>
                     </div>
@@ -82,130 +198,129 @@ export default function ContactPage() {
             </div>
 
             {/* Right Side - Contact Form */}
-            <div className="p-8 lg:p-12  bg-[#f4f4fb] rounded-xl border border-black flex justify-center items-center ">
-              <div className=" mx-auto">
-                <div className=' flex flex-col justify-center items-center text-center'>
-                  <h2 className="text-3xl font-bold text-gray-900 mb-3">Get In Touch</h2>
-                  <p className="text-gray-600 mb-8 leading-relaxed">
-                    Simply fill out the brief fields below and Ellie will be in touch
-                    with you soon, usually within one business day. This form is
-                    safe, private, and completely free.
+            <div className="bg-white border-2 border-gray-300 rounded-xl p-8 shadow-2xl">
+              <h2 className="text-2xl font-bold text-gray-800 mb-4 text-center">Get In Touch</h2>
+
+              <p className="text-gray-600 text-center mb-8 leading-relaxed">
+                Simply fill out the brief fields below and Ellie will be in touch with you soon, usually within one business day.
+                This form is safe, private, and completely free.
+              </p>
+
+              <div className="space-y-6">
+
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">Name</label>
+                  <input
+                    type="text"
+                    name="name"
+                    value={formData.name}
+                    onChange={handleInputChange}
+                    placeholder="Name"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">Email</label>
+                  <input
+                    type="email"
+                    name="email"
+                    value={formData.email}
+                    onChange={handleInputChange}
+                    placeholder="you@example.com"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">Phone</label>
+                  <input
+                    type="tel"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleInputChange}
+                    placeholder="(555) 234-5678"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">Message</label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={2}
+                    placeholder="What brings you here?"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors resize-vertical"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-gray-700 font-medium mb-2">Preferred time to reach you</label>
+                  <input
+                    type="text"
+                    name="time"
+                    value={formData.time}
+                    onChange={handleInputChange}
+                    placeholder="time"
+                    className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-teal-500 focus:border-teal-500 outline-none transition-colors"
+                  />
+                </div>
+
+                <div className="flex items-center space-x-2">
+                  <input
+                    type="checkbox"
+                    id="agree"
+                    name="agree"
+                    checked={agreed}
+                    onChange={(e) => setAgreed(e.target.checked)}
+                    className="h-4 w-4 text-teal-600 border-gray-300 rounded focus:ring-teal-500"
+                  />
+
+                  <label className="text-sm  text-gray-700">
+                    I agree to be contacted by Dr. Serena Blake via email or phone.
+                  </label>
+                </div>
+
+
+                <button
+                  type="button"
+                  onClick={handleSubmit}
+                  disabled={isSubmitting}
+                  className={`w-full font-medium py-4 px-6 rounded-lg transition-colors duration-200 
+          ${isSubmitting
+                      ? 'bg-gray-400 cursor-not-allowed text-white'
+                      : 'bg-teal-600 hover:bg-teal-700 text-white'}
+        `}
+                >
+                  {isSubmitting ? 'Sending...' : 'Send Message'}
+                </button>
+
+                <div className="p-1">
+                  <p className="text-black flex items-start gap-1 text-sm leading-snug">
+                    <span><Info className="text-black mt-0.5 w-4 h-4" /></span>
+                    <span>
+                      By submitting, you confirm you are 18+ and agree to our{' '}
+                      <span className="underline">Privacy Policy & TOS</span> and to receive emails & texts from Serena Blake.
+                    </span>
                   </p>
                 </div>
-
-                <div className="space-y-6">
-                  <div>
-                    <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">
-                      Name *
-                    </label>
-                    <input
-                      type="text"
-                      id="name"
-                      name="name"
-                      value={formData.name}
-                      onChange={handleInputChange}
-                      placeholder="Enter your full name"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all duration-200 text-gray-900"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">
-                      Email *
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={formData.email}
-                      onChange={handleInputChange}
-                      placeholder="you@example.com"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all duration-200 text-gray-900"
-                      required
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-2">
-                      Phone
-                    </label>
-                    <input
-                      type="tel"
-                      id="phone"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleInputChange}
-                      placeholder="(555) 234-5678"
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all duration-200 text-gray-900"
-                    />
-                  </div>
-
-                  <div>
-                    <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-2">
-                      Message
-                    </label>
-                    <textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="How can I help you?"
-                      rows={2}
-                      className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-slate-500 focus:border-transparent transition-all duration-200 resize-vertical text-gray-900"
-                    />
-                  </div>
-
-                  {/* reCAPTCHA Section */}
-                  <div className="flex items-center space-x-3 p-4 bg-gray-50 rounded-lg border border-gray-200">
-                    <input
-                      type="checkbox"
-                      id="recaptcha"
-                      className="w-5 h-5 text-slate-600 border-gray-300 rounded focus:ring-slate-500"
-                    />
-                    <label htmlFor="recaptcha" className="text-sm text-gray-700 flex-1">
-                      I'm not a robot
-                    </label>
-                    <div className="flex items-center justify-center w-10 h-10 bg-white border-2 border-gray-300 rounded">
-                      <div className="w-6 h-6 border-2 border-gray-400 rounded-sm flex items-center justify-center">
-                        <div className="w-2 h-2 bg-gray-400 rounded-full"></div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <button
-                    onClick={handleSubmit}
-                    className="w-full bg-slate-700 hover:bg-slate-800 text-white py-2 px-6 rounded-lg transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-slate-500 focus:ring-offset-2 text-lg"
-                  >
-                    Send Message
-                  </button>
-                  <div className="p-1">
-                    <p className="text-black flex items-start gap-1 text-sm leading-snug">
-                      <span>
-                        <Info className="text-black mt-0.5 w-4 h-4" />
-                      </span>
-                      <span>
-                        By submitting, you confirm you are 18+ and agree to our{' '}
-                        <span className="underline">Privacy Policy & TOS</span> and to receive emails & texts from Serena Blake.
-                      </span>
-                    </p>
-                  </div>
-                </div>
               </div>
+
             </div>
           </div>
         </div>
 
-        <div className='bg-[#f4f4fb] border border-black mt-10 rounded-lg p-5'>
-          <div className='flex gap-1'>
-            <CircleAlert className='mb-1 text-red-600' />
-            <span className='text-red-600 font-bold text-lg'>Please Note:</span>
+        <div className="bg-[#f4f4fb] border border-black mt-10 rounded-lg p-5">
+          <div className="flex gap-1">
+            <CircleAlert className="mb-1 text-red-600" />
+            <span className="text-red-600 font-bold text-lg">Please Note:</span>
           </div>
-          <h2 className='text-lg text-blue-600'>
-            I do not take insurance directly. However, I can provide you with a billing sheet with the necessary facts and codes so you can file for <span className='font-bold'>out-of-network benefits</span> with your insurance company.
+          <h2 className="text-lg text-blue-600">
+            I do not take insurance directly. However, I can provide you with a billing sheet with the necessary facts and codes so you can file for <span className="font-bold">out-of-network benefits</span> with your insurance company.
           </h2>
         </div>
-
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import { Sparkles } from 'lucide-react';
 
 const ScheduleConsultation = () => {
   return (
-    <div className="bg-[#274044] py-17 px-4">
+    <div className="bg-[#274044] py-19 px-4">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-10">
           {/* Left Section - Title */}
