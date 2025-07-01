@@ -50,7 +50,7 @@ const Books = () => {
                     </h2>
                 </div>
                 {/* Header */}
-                <h1 className="text-5xl font-bold text-gray-800 mb-16">
+                <h1 className="text-5xl font-bold text-[#3f4945] mb-16">
                     Serena's Books
                 </h1>
 
@@ -67,7 +67,7 @@ const Books = () => {
                                         </div>
                                         <h3 className="text-xl font-bold text-gray-800 mb-2">Baby Dolls and Ninja Swords</h3>
                                         <p className="text-sm text-gray-600">6 True Tales of Play Therapy</p>
-                                        <p className="text-sm text-gray-700 mt-4 font-medium">Ellie Shumaker</p>
+                                        <p className="text-sm text-gray-700 mt-4 font-medium">Serena Blake</p>
                                     </div>
                                 )}
 
@@ -76,7 +76,7 @@ const Books = () => {
                                         <h3 className="text-2xl font-bold text-gray-800 mb-4">Frozen Tears</h3>
                                         <div className="w-20 h-20 bg-black rounded-full mx-auto mb-4 opacity-70"></div>
                                         <p className="text-sm font-medium text-gray-700">15 Stories of Blindness Before & Hope After Abortion</p>
-                                        <p className="text-sm text-gray-700 mt-4 font-medium">Ellie Shumaker, LCSW</p>
+                                        <p className="text-sm text-gray-700 mt-4 font-medium">Serena Blake</p>
                                     </div>
                                 )}
 
@@ -87,7 +87,7 @@ const Books = () => {
                                         <div className="w-32 h-24 bg-orange-500 mx-auto mb-4 rounded flex items-center justify-center">
                                             <span className="text-3xl">🔥</span>
                                         </div>
-                                        <p className="text-sm font-medium">Ellie Shumaker</p>
+                                        <p className="text-sm font-medium">Serena Blake</p>
                                     </div>
                                 )}
 
@@ -103,13 +103,13 @@ const Books = () => {
 
                             {/* Book Info */}
                             <div className="p-6 flex-grow flex flex-col">
-                                <h3 className="text-lg font-bold text-gray-800 mb-3 leading-tight">
+                                <h3 className="text-lg font-bold text-[#3f4945] mb-3 leading-tight">
                                     {book.title}
                                 </h3>
 
                                 <div className="space-y-2 mb-6 flex-grow">
-                                    <p className="text-sm text-gray-600">{book.status}</p>
-                                    <p className="text-sm text-gray-600">{book.formats}</p>
+                                    <p className="text-sm text-[#3f4945]">{book.status}</p>
+                                    <p className="text-sm text-[#3f4945]">{book.formats}</p>
                                 </div>
 
                                 {/* View on Amazon Button */}
