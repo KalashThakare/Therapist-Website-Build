@@ -10,14 +10,14 @@ const Blogs = () => {
           <h1 className="text-5xl font-bold text-[#363c39] mb-6">
             Latest Blogs
           </h1>
-          <p className="text-lg text-gray-600 leading-relaxed">
-            Discover helpful insights and strategies from Ellie Shumaker to improve your 
+          <p className="text-lg text-gray-600 leading-relaxed max-w-150">
+            Discover helpful insights and strategies from Serena Blake to improve your 
             relationships and personal well-being.
           </p>
         </div>
 
         {/* Empty State */}
-        <div className="text-center py-16">
+        <div className="text-center py-16 border-t-1">
           <div className="mb-8">
             <svg 
               className="w-24 h-24 text-gray-300 mx-auto mb-4" 

@@ -80,7 +80,7 @@ const Navbar = () => {
 
     setTimeout(() => {
       router.push(href);
-    }, 200);
+    }, 400);
   };
 
   const LoadingOverlay = () => (
@@ -103,13 +103,6 @@ const Navbar = () => {
           >
             
           </div>
-        </div>
-        
-        <div 
-          className="mt-5 text-base font-medium"
-          style={{ color: '#274044' }}
-        >
-          Loading... {Math.round(loadingProgress)}%
         </div>
       </div>
     </div>
