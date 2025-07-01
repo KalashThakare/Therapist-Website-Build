@@ -4,6 +4,19 @@ import Link from 'next/link';
 import {Phone} from "lucide-react";
 
 const Footer: React.FC = () => {
+  const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
+    e.preventDefault();
+    const element = document.getElementById(targetId);
+    if (element) {
+      const navbarHeight = 120;
+      const elementPosition = element.offsetTop - navbarHeight;
+      
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
   return (
     <footer className="bg-[#244344] text-gray-300 py-12 px-10">
       <div className="max-w-5xl mx-auto">
@@ -60,35 +73,48 @@ const Footer: React.FC = () => {
             <h3 className="text-white font-semibold mb-4 text-lg">LINKS</h3>
             <ul className="space-y-3">
               <li>
-                <Link href="/contact" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                <Link href="/contact" className="text-gray-300 hover:text-white hover:underline transition-colors scroll-smooth">
                   Get In Touch
                 </Link>
               </li>
               <li>
-                <Link href="/testimonials" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                <a 
+                  href="#testimonials" 
+                  onClick={(e) => handleSmoothScroll(e, 'testimonials')}
+                  className="text-gray-300 hover:text-white hover:underline transition-colors cursor-pointer"
+                >
                   Testimonials
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/about" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                <a 
+                  href="#about" 
+                  onClick={(e) => handleSmoothScroll(e, 'about')}
+                  className="text-gray-300 hover:text-white hover:underline transition-colors cursor-pointer"
+                >
                   About Me
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/faq" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                <a 
+                  href="#faq" 
+                  onClick={(e) => handleSmoothScroll(e, 'faq')}
+                  className="text-gray-300 hover:text-white hover:underline transition-colors cursor-pointer"
+                >
                   FAQ's
-                </Link>
+                </a>
               </li>
               <li>
-                <Link href="/therapies" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                <Link href="/services" className="text-gray-300 hover:text-white hover:underline transition-colors">
                   Therapies
                 </Link>
               </li>
               <li>
-                <Link href="/blog" className="text-gray-300 hover:text-white hover:underline transition-colors">
+                <Link href="/blogs" className="text-gray-300 hover:text-white hover:underline transition-colors">
                   Blogs
                 </Link>
               </li>
+              
             </ul>
           </div>
 

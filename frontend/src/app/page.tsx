@@ -32,7 +32,10 @@ const Home = () => {
       </div>
       
       <Books />
-      <Blogs />
+      <div id='blog'>
+        <Blogs />
+      </div>
+      
          
       <div id="faq">
         <FAQ />
