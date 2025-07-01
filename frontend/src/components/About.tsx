@@ -1,11 +1,18 @@
-import React from 'react';
+"use client"
+import React, { useEffect, useState } from 'react';
 import { Calendar, Star } from 'lucide-react';
+import HydrationSafeButton from './hydration-safe';
 
 interface AboutProps {
     bgColor?: string;
 }
 
 const About: React.FC<AboutProps> = ({ bgColor = "#bddade" }) => {
+    const [isClient, setIsClient] = useState(false);
+
+    useEffect(() => {
+        setIsClient(true);
+    }, []);
     return (
         <div className="py-16 px-4" style={{ backgroundColor: bgColor }}>
             <div className="max-w-7xl mx-auto">
@@ -36,9 +43,11 @@ const About: React.FC<AboutProps> = ({ bgColor = "#bddade" }) => {
 
                                 <div className="flex items-center space-x-2">
                                     <div className="flex space-x-1">
-                                        {[...Array(5)].map((_, i) => (
-                                            <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                                        ))}
+                                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                                        <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
                                     </div>
                                     <span className="text-sm font-medium text-gray-700">
                                         5 star rated on Google
@@ -69,10 +78,12 @@ const About: React.FC<AboutProps> = ({ bgColor = "#bddade" }) => {
                         </div>
 
                         <div className="pt-4">
-                            <button className="inline-flex items-center px-8 py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
-                                <Calendar className="w-5 h-5 mr-3" />
-                                Schedule Free Consultation
-                            </button>
+                            {isClient && (
+                                <HydrationSafeButton className="inline-flex items-center px-8 py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
+                                    <Calendar className="w-5 h-5 mr-3" />
+                                    Schedule Free Consultation
+                                </HydrationSafeButton>
+                            )}
                         </div>
                     </div>
 

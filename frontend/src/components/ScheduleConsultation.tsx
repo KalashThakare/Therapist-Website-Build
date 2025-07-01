@@ -1,9 +1,16 @@
 "use client"
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Sparkles } from 'lucide-react';
 import Link from 'next/link';
 
 const ScheduleConsultation = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  // Fix hydration by ensuring client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   return (
     <div className="bg-[#274044] py-19 px-4">
       <div className="max-w-6xl mx-auto">
@@ -26,10 +33,22 @@ const ScheduleConsultation = () => {
 
           {/* Right Section - CTA Button */}
           <div className="flex-shrink-0">
-            <button className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-white hover:text-slate-700 transition-all duration-300 flex items-center gap-2">
-              <Sparkles />
-              <Link href={"/contact"}>Start Healing</Link>
-            </button>
+            {isClient ? (
+              <Link href="/contact">
+                <button 
+                  className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold text-lg hover:bg-white hover:text-slate-700 transition-all duration-300 flex items-center gap-2"
+                  suppressHydrationWarning
+                >
+                  <Sparkles />
+                  Start Healing
+                </button>
+              </Link>
+            ) : (
+              <div className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-lg font-semibold text-lg flex items-center gap-2">
+                <Sparkles />
+                Start Healing
+              </div>
+            )}
           </div>
         </div>
       </div>

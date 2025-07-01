@@ -1,17 +1,24 @@
 "use client"
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 const HowIHelp = () => {
-
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
 
+  // Fix hydration by ensuring client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
+
   const handleIndividualClick = () => {
+    if (!isClient) return;
     router.push("/services/individual-counceling");
   };
 
   const handleCouplesClick = () => {
+    if (!isClient) return;
     router.push("/services/couple-counceling");
   };
 
@@ -61,9 +68,19 @@ const HowIHelp = () => {
                 Discover Peace, Purpose, and God's Truth in Richmond, VA.
               </p>
               
-              <button onClick={handleIndividualClick} className="w-full hover:bg-white/70 text-slate-700 font-semibold py-3 px-6 rounded-xl border border-black transition-all duration-300 hover:shadow-md">
-                Learn More
-              </button>
+              {isClient ? (
+                <button 
+                  onClick={handleIndividualClick} 
+                  className="w-full hover:bg-white/70 text-slate-700 font-semibold py-3 px-6 rounded-xl border border-black transition-all duration-300 hover:shadow-md"
+                  suppressHydrationWarning
+                >
+                  Learn More
+                </button>
+              ) : (
+                <div className="w-full text-slate-700 font-semibold py-3 px-6 rounded-xl border border-black text-center">
+                  Learn More
+                </div>
+              )}
             </div>
           </div>
 
@@ -92,9 +109,19 @@ const HowIHelp = () => {
                 Heal Your Relationship, Grow Closer to God Together in Richmond.
               </p>
               
-              <button onClick={handleCouplesClick} className="w-full hover:bg-white/70 text-slate-700 font-semibold py-3 px-6 rounded-xl border border-black transition-all duration-300 hover:shadow-md">
-                Learn More
-              </button>
+              {isClient ? (
+                <button 
+                  onClick={handleCouplesClick} 
+                  className="w-full hover:bg-white/70 text-slate-700 font-semibold py-3 px-6 rounded-xl border border-black transition-all duration-300 hover:shadow-md"
+                  suppressHydrationWarning
+                >
+                  Learn More
+                </button>
+              ) : (
+                <div className="w-full text-slate-700 font-semibold py-3 px-6 rounded-xl border border-black text-center">
+                  Learn More
+                </div>
+              )}
             </div>
           </div>
         </div>

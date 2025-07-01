@@ -1,5 +1,6 @@
 "use client"
 import React from 'react';
+import HydrationSafeButton from './hydration-safe';
 
 const Books = () => {
     const books = [
@@ -114,7 +115,7 @@ const Books = () => {
 
                                 {/* View on Amazon Button */}
                                 {book.amazonUrl ? (
-                                    <button
+                                    <HydrationSafeButton
                                         className="w-full bg-[#bbdbdb] text-[#35586d] font-medium py-3 px-4 rounded-lg transition-colors duration-200 flex items-center justify-center space-x-2 mt-auto"
                                         onClick={() => window.open(book.amazonUrl, '_blank')}
                                     >
@@ -122,7 +123,7 @@ const Books = () => {
                                             <path d="M.045 18.02c9.001 6.636 20.722 4.668 27.017-1.634.686-.686.686-1.808 0-2.495-.686-.686-1.808-.686-2.495 0-4.668 4.668-13.254 6.123-19.877.961-.686-.519-1.634-.378-2.153.378-.519.686-.378 1.635.378 2.154l.13.088c.304.22.668.343 1.045.343.378 0 .742-.123 1.045-.343l-.09-.452zm23.91-6.636c-.686-.686-1.809-.686-2.495 0-1.982 1.982-4.841 3.437-8.279 3.437s-6.297-1.455-8.279-3.437c-.686-.686-1.809-.686-2.495 0-.686.686-.686 1.809 0 2.495 2.495 2.495 6.123 4.157 10.774 4.157s8.279-1.662 10.774-4.157c.686-.686.686-1.809 0-2.495zm-19.36-8.794c.686-.686.686-1.809 0-2.495-.686-.686-1.809-.686-2.495 0-1.982 1.982-3.089 4.668-3.089 7.506s1.107 5.524 3.089 7.506c.686.686 1.809.686 2.495 0 .686-.686.686-1.809 0-2.495-1.296-1.296-2.013-3.089-2.013-5.011s.717-3.715 2.013-5.011z" />
                                         </svg>
                                         <span>View on Amazon</span>
-                                    </button>
+                                    </HydrationSafeButton>
                                 ) : (
                                     <button
                                         className="w-full bg-gray-400 text-white font-medium py-3 px-4 rounded-lg cursor-not-allowed mt-auto"

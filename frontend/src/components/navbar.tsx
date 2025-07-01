@@ -4,15 +4,20 @@ import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import { Phone, MapPin, Menu, X, Sparkles, PhoneCall, ChevronDown } from 'lucide-react';
+import { ServicesDropdown, AreasDropdown } from './dropdown'; // Adjust import path as needed
 
 const Navbar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
-  const [isAreasOpen, setIsAreasOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [loadingProgress, setLoadingProgress] = useState(0);
+  const [isClient, setIsClient] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+
+  // Fix hydration by ensuring client-side rendering
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -20,6 +25,8 @@ const Navbar = () => {
 
   // Handle scroll after navigation
   useEffect(() => {
+    if (!isClient) return;
+    
     const hash = window.location.hash;
     if (hash) {
       const targetId = hash.substring(1); // Remove the # symbol
@@ -27,9 +34,11 @@ const Navbar = () => {
         scrollToSection(targetId);
       }, 100); // Small delay to ensure page is loaded
     }
-  }, [pathname]);
+  }, [pathname, isClient]);
 
   const scrollToSection = (targetId: string) => {
+    if (!isClient) return;
+    
     const element = document.getElementById(targetId);
     if (element) {
       const navbarHeight = 120;
@@ -45,6 +54,8 @@ const Navbar = () => {
   const handleSmoothScroll = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>, targetId: string) => {
     e.preventDefault();
 
+    if (!isClient) return;
+
     // Check if we're on the home page
     if (pathname === '/') {
       // We're on home page, just scroll
@@ -59,6 +70,8 @@ const Navbar = () => {
 
   // Enhanced navigation with loading
   const handleNavigation = (href: string, callback?: () => void) => {
+    if (!isClient) return;
+    
     setIsLoading(true);
     setLoadingProgress(0);
 
@@ -107,6 +120,37 @@ const Navbar = () => {
     </div>
   );
 
+  // Don't render interactive elements until client-side hydration is complete
+  if (!isClient) {
+    return (
+      <div className="w-full sticky top-0 z-50">
+        <nav className="bg-[#e5ecf1] shadow-sm border-b">
+          <div className="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+            <div className="flex justify-center items-center h-16">
+              {/* Logo only during SSR */}
+              <div className="flex items-center justify-center">
+                <div className="bg-white rounded-full p-3 w-fit">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-8 h-8 bg-teal-600 rounded-full flex items-center justify-center">
+                      <svg className="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M3 4a1 1 0 011-1h12a1 1 0 011 1v2a1 1 0 01-1 1H4a1 1 0 01-1-1V4zM3 10a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H4a1 1 0 01-1-1v-6zM14 9a1 1 0 00-1 1v6a1 1 0 001 1h2a1 1 0 001-1v-6a1 1 0 00-1-1h-2z" />
+                      </svg>
+                    </div>
+                    <div>
+                      <Link href={"/"}>
+                        <div className="text-teal-700 font-semibold text-sm">Serena Blake</div>
+                      </Link>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </nav>
+      </div>
+    );
+  }
+
   return (
     <>
       {/* Loading Overlay */}
@@ -138,52 +182,9 @@ const Navbar = () => {
                   </div>
                 </div>
 
-                <div
-                  className="relative"
-                  onMouseEnter={() => setIsServicesOpen(true)}
-                  onMouseLeave={() => setIsServicesOpen(false)}
-                >
-                  <button
-                    className="flex items-center space-x-1 text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200 font-medium"
-                    onClick={() => handleNavigation('/services')}
-                  >
-                    <span>Services</span>
-                  </button>
+                {/* Services Dropdown */}
+                <ServicesDropdown onNavigate={handleNavigation} />
 
-                  {/* Dropdown Menu */}
-                  <div className={`absolute top-full left-0 mt-1 w-150 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-200 ${isServicesOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                    }`}>
-                    <div className="grid grid-cols-2 p-4 space-y-4">
-                      <button
-                        onClick={() => handleNavigation('/services/individual-counceling')}
-                        className="block group text-left"
-                      >
-                        <div className="p-3 rounded-lg hover:bg-[#bddade] transition-colors duration-200">
-                          <h3 className="font-semibold text-gray-800  transition-colors">
-                            Individual Counseling in Richmond, VA
-                          </h3>
-                          <p className="text-sm text-gray-600 mt-1">
-                            Discover Peace, Purpose, and God's Truth in Richmond, VA.
-                          </p>
-                        </div>
-                      </button>
-
-                      <button
-                        onClick={() => handleNavigation('/services/couple-counceling')}
-                        className="block group text-left"
-                      >
-                        <div className="p-3 rounded-lg hover:bg-[#bddade] transition-colors duration-200">
-                          <h3 className="font-semibold text-gray-800 transition-colors">
-                            Couples Counseling in Richmond, VA
-                          </h3>
-                          <p className="text-sm text-gray-600 mt-1">
-                            Heal Your Relationship, Grow Closer to God Together in Richmond.
-                          </p>
-                        </div>
-                      </button>
-                    </div>
-                  </div>
-                </div>
                 <a
                   href="#about"
                   onClick={(e) => handleSmoothScroll(e, 'about')}
@@ -205,79 +206,14 @@ const Navbar = () => {
                 >
                   Rates & FAQs
                 </a>
-                <div
-                  className="relative"
-                  onMouseEnter={() => setIsAreasOpen(true)}
-                  onMouseLeave={() => setIsAreasOpen(false)}
-                >
-                  <button
-                    className="flex items-center space-x-1 text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200 font-medium"
-                    onClick={() => handleNavigation('/locations')}
-                  >
-                    <span>Areas Served</span>
-                  </button>
 
-                  {/* Dropdown Menu */}
-                  <div className={`absolute top-full left-1/2 transform -translate-x-1/2 mt-1 w-150 bg-white rounded-lg shadow-lg border border-gray-200 transition-all duration-200 ${isAreasOpen ? 'opacity-100 visible translate-y-0' : 'opacity-0 invisible -translate-y-2'
-                    }`}>
-                    <div className="p-6">
-                      <div className="grid grid-cols-2 gap-6">
-                        {/* Column 1 */}
-                        <div className="space-y-3">
-                          <button onClick={() => handleNavigation('/services')} className="block group text-left w-full">
-                            <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
-                              <h4 className="font-semibold text-gray-800 text-md">Richmond, VA</h4>
-                              <p className="text-sm text-gray-600 mt-1">Richmond is known for its rich Civil War history, the James River rapids,...</p>
-                            </div>
-                          </button>
+                {/* Areas Dropdown */}
+                <AreasDropdown onNavigate={handleNavigation} />
 
-                          <button onClick={() => handleNavigation('/services')} className="block group text-left w-full">
-                            <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
-                              <h4 className="font-semibold text-gray-800 text-md">Mechanicsville, VA</h4>
-                              <p className="text-sm text-gray-600 mt-1">Mechanicsville is known for its Civil War battlefields and suburban...</p>
-                            </div>
-                          </button>
-
-                          <button onClick={() => handleNavigation('/services')} className="block group text-left w-full">
-                            <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
-                              <h4 className="font-semibold text-gray-800 text-md">East Highland Park, VA</h4>
-                              <p className="text-sm text-gray-600 mt-1">East Highland Park is a residential suburb directly east of downtown...</p>
-                            </div>
-                          </button>
-
-                        </div>
-
-                        {/* Column 2 */}
-                        <div className="space-y-3">
-                          <button onClick={() => handleNavigation('/services')} className="block group text-left w-full">
-                            <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
-                              <h4 className="font-semibold text-gray-800 text-md">Ashland, VA</h4>
-                              <p className="text-sm text-gray-600 mt-1">Ashland is home to Randolph-Macon College and features a charming...</p>
-                            </div>
-                          </button>
-
-                          <button onClick={() => handleNavigation('/services')} className="block group text-left w-full">
-                            <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
-                              <h4 className="font-semibold text-gray-800 text-md">Lakeside, VA</h4>
-                              <p className="text-sm text-gray-600 mt-1">Lakeside sits just east of Richmond and is known for its proximity to maj...</p>
-                            </div>
-                          </button>
-
-                          <button onClick={() => handleNavigation('/services')} className="block group text-left w-full">
-                            <div className="hover:bg-[#bddade] p-2 rounded transition-colors duration-200">
-                              <h4 className="font-semibold text-gray-800 text-md">Short Pump, VA</h4>
-                              <p className="text-sm text-gray-600 mt-1">Short Pump is a major shopping and dining district in western Henrico...</p>
-                            </div>
-                          </button>
-                        </div>
-
-                      </div>
-                    </div>
-                  </div>
-                </div>
                 <button
                   onClick={() => handleNavigation('/contact')}
                   className="text-gray-700 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200 font-medium"
+                  suppressHydrationWarning
                 >
                   Contact
                 </button>
@@ -285,6 +221,7 @@ const Navbar = () => {
                 <button
                   onClick={() => handleNavigation('/contact')}
                   className="flex items-center space-x-2 bg-white border border-gray-700 rounded-lg px-4 py-2 text-gray-700 hover:bg-gray-50 transition-colors duration-200"
+                  suppressHydrationWarning
                 >
                   <Sparkles className="w-4 h-4" />
                   <span>Get Started</span>
@@ -314,6 +251,7 @@ const Navbar = () => {
                 <button
                   onClick={toggleMenu}
                   className="text-gray-700 hover:text-green-600 focus:outline-none"
+                  suppressHydrationWarning
                 >
                   {isMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                 </button>
@@ -332,9 +270,6 @@ const Navbar = () => {
 
               <div className={`fixed top-0 right-0 h-full w-80 max-w-[80vw] bg-white shadow-xl transform transition-transform duration-300 ease-in-out ${isMenuOpen ? 'translate-x-0' : 'translate-x-full'
                 }`}>
-
-                  
-
 
                 <div className="flex justify-end p-4 border-b">
 
@@ -359,6 +294,7 @@ const Navbar = () => {
                   <button
                     onClick={() => setIsMenuOpen(false)}
                     className="p-2 rounded-md text-gray-400 hover:text-gray-600 hover:bg-gray-100 transition-colors"
+                    suppressHydrationWarning
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -371,6 +307,7 @@ const Navbar = () => {
                       handleNavigation('/services');
                     }}
                     className="block w-full text-left px-4 py-3 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+                    suppressHydrationWarning
                   >
                     How I Help
                   </button>
@@ -401,6 +338,7 @@ const Navbar = () => {
                       handleNavigation('/locations');
                     }}
                     className="block w-full text-left px-4 py-3 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+                    suppressHydrationWarning
                   >
                     Areas Served
                   </button>
@@ -410,6 +348,7 @@ const Navbar = () => {
                       handleNavigation('/contact');
                     }}
                     className="block w-full text-left px-4 py-3 text-gray-700 hover:text-green-600 hover:bg-gray-50 rounded-md font-medium transition-colors duration-200"
+                    suppressHydrationWarning
                   >
                     Contact
                   </button>

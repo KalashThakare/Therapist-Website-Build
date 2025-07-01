@@ -1,5 +1,6 @@
 "use client";
 import Footer from '@/components/footer';
+import HydrationSafeButton from '@/components/hydration-safe';
 import Navbar from '@/components/navbar';
 import Testimonials from '@/components/Testimonials';
 import Topbar from '@/components/Topbar';
@@ -218,10 +219,10 @@ const TherapistContact = () => {
                         <div>
 
                             <div className='w-full flex justify-center items-center'>
-                                <button className=" bg-teal-100 hover:bg-teal-200 text-teal-800 font-medium py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-3 border border-teal-200">
+                                <HydrationSafeButton className=" bg-teal-100 hover:bg-teal-200 text-teal-800 font-medium py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-3 border border-teal-200">
                                     <PhoneCall className="w-5 h-5" />
                                     Call Dr. Serena Blake
-                                </button>
+                                </HydrationSafeButton>
                             </div>
 
                             <div className='m-10 flex justify-center'>
@@ -242,6 +243,7 @@ const TherapistContact = () => {
                                     <div>
                                         <label className="block text-gray-700 font-medium mb-1 text-sm">Name</label>
                                         <input
+                                        suppressHydrationWarning={true}
                                             type="text"
                                             name="name"
                                             value={formData.name}
@@ -254,6 +256,7 @@ const TherapistContact = () => {
                                     <div>
                                         <label className="block text-gray-700 font-medium mb-1 text-sm">Email</label>
                                         <input
+                                        suppressHydrationWarning={true}
                                             type="email"
                                             name="email"
                                             value={formData.email}
@@ -266,6 +269,7 @@ const TherapistContact = () => {
                                     <div>
                                         <label className="block text-gray-700 font-medium mb-1 text-sm">Phone</label>
                                         <input
+                                        suppressHydrationWarning={true}
                                             type="tel"
                                             name="phone"
                                             value={formData.phone}
@@ -290,6 +294,7 @@ const TherapistContact = () => {
                                     <div>
                                         <label className="block text-gray-700 font-medium mb-1 text-sm">Preferred time to reach you</label>
                                         <input
+                                        suppressHydrationWarning={true}
                                             type="text"
                                             name="time"
                                             value={formData.time}
@@ -301,6 +306,7 @@ const TherapistContact = () => {
 
                                     <div className="flex items-center space-x-2">
                                         <input
+                                        suppressHydrationWarning={true}
                                             type="checkbox"
                                             id="agree"
                                             name="agree"
@@ -315,7 +321,7 @@ const TherapistContact = () => {
                                     </div>
 
 
-                                    <button
+                                    <HydrationSafeButton
                                         type="button"
                                         onClick={handleSubmit}
                                         disabled={isSubmitting}
@@ -326,7 +332,7 @@ const TherapistContact = () => {
         `}
                                     >
                                         {isSubmitting ? 'Sending...' : 'Send Message'}
-                                    </button>
+                                    </HydrationSafeButton>
 
                                     <div className="p-1">
                                         <p className="text-black flex items-start gap-1 text-xs leading-snug">

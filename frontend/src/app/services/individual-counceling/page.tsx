@@ -2,6 +2,7 @@
 import About from '@/components/About';
 import FAQ from '@/components/Faq';
 import Footer from '@/components/footer';
+import HydrationSafeButton from '@/components/hydration-safe';
 import Navbar from '@/components/navbar';
 import Testimonials from '@/components/Testimonials';
 import Topbar from '@/components/Topbar';
@@ -310,12 +311,12 @@ const page = () => {
 
                             {/* Action Buttons */}
                             <div className="flex flex-col sm:flex-row gap-4 pt-2">
-                                <button className="px-5 py-3 bg-[#283f44] text-white rounded-md hover:bg-gray-700 transition-colors duration-200 font-medium">
+                                <HydrationSafeButton className="px-5 py-3 bg-[#283f44] text-white rounded-md hover:bg-gray-700 transition-colors duration-200 font-medium">
                                     Find Healing Through Christ
-                                </button>
-                                <button className="px-5 py-3 border-2 border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors duration-200 font-medium">
+                                </HydrationSafeButton>
+                                <HydrationSafeButton className="px-5 py-3 border-2 border-gray-300 text-gray-700 rounded-md hover:bg-gray-50 transition-colors duration-200 font-medium">
                                     See How I Work
-                                </button>
+                                </HydrationSafeButton>
                             </div>
                         </div>
 
@@ -419,10 +420,10 @@ const page = () => {
                                                 <p className="text-gray-600 text-sm mb-4 leading-relaxed">
                                                     {service.description}
                                                 </p>
-                                                <button className="inline-flex items-center px-5 py-2.5 bg-gray-800 text-white text-sm font-medium rounded-lg hover:bg-gray-900 transition-colors duration-200">
+                                                <HydrationSafeButton className="inline-flex items-center px-5 py-2.5 bg-gray-800 text-white text-sm font-medium rounded-lg hover:bg-gray-900 transition-colors duration-200">
                                                     <Calendar className="w-4 h-4 mr-2" />
                                                     {service.buttonText}
-                                                </button>
+                                                </HydrationSafeButton>
                                             </div>
                                         </div>
                                     </div>
@@ -468,10 +469,10 @@ const page = () => {
                 <div className="space-y-6 max-w-xl mx-auto bg-[#dee9fc] p-5">
 
                     <div className='w-full flex justify-center items-center'>
-                        <button className=" bg-teal-100 hover:bg-teal-200 text-teal-800 font-medium py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-3 border border-teal-200">
+                        <HydrationSafeButton className=" bg-teal-100 hover:bg-teal-200 text-teal-800 font-medium py-4 px-6 rounded-lg transition-colors duration-200 flex items-center justify-center gap-3 border border-teal-200">
                             <PhoneCall className="w-5 h-5" />
                             Call Dr. Serena Blake
-                        </button>
+                        </HydrationSafeButton>
                     </div>
 
                     {/* OR Divider */}
@@ -496,6 +497,7 @@ const page = () => {
                             <div>
                                 <label className="block text-gray-700 font-medium mb-2">Name</label>
                                 <input
+                                suppressHydrationWarning={true}
                                     type="text"
                                     name="name"
                                     value={formData.name}
@@ -508,6 +510,7 @@ const page = () => {
                             <div>
                                 <label className="block text-gray-700 font-medium mb-2">Email</label>
                                 <input
+                                suppressHydrationWarning={true}
                                     type="email"
                                     name="email"
                                     value={formData.email}
@@ -520,6 +523,7 @@ const page = () => {
                             <div>
                                 <label className="block text-gray-700 font-medium mb-2">Phone</label>
                                 <input
+                                suppressHydrationWarning={true}
                                     type="tel"
                                     name="phone"
                                     value={formData.phone}
@@ -544,6 +548,7 @@ const page = () => {
                             <div>
                                 <label className="block text-gray-700 font-medium mb-2">Preferred time to reach you</label>
                                 <input
+                                suppressHydrationWarning={true}
                                     type="text"
                                     name="time"
                                     value={formData.time}
@@ -555,6 +560,7 @@ const page = () => {
 
                             <div className="flex items-center space-x-2">
                                 <input
+                                suppressHydrationWarning={true}
                                     type="checkbox"
                                     id="agree"
                                     name="agree"
@@ -569,7 +575,7 @@ const page = () => {
                             </div>
 
 
-                            <button
+                            <HydrationSafeButton
                                 type="button"
                                 onClick={handleSubmit}
                                 disabled={isSubmitting}
@@ -580,7 +586,7 @@ const page = () => {
                                         `}
                             >
                                 {isSubmitting ? 'Sending...' : 'Send Message'}
-                            </button>
+                            </HydrationSafeButton>
 
                             <div className="p-1">
                                 <p className="text-black flex items-start gap-1 text-sm leading-snug">

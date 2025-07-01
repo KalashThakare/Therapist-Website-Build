@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from 'react';
+import HydrationSafeButton from './hydration-safe';
 
 const FAQ = () => {
   const [openIndex, setOpenIndex] = useState(2); // Third item is open by default
@@ -36,7 +37,7 @@ const FAQ = () => {
           {faqs.map((faq, index) => (
             <div key={index} className="border-b border-gray-400">
               {/* Question */}
-              <button
+              <HydrationSafeButton
                 className="w-full py-4 sm:py-5 md:py-6 flex justify-between items-center text-left transition-colors duration-200"
                 onClick={() => toggleFAQ(index)}
               >
@@ -64,7 +65,7 @@ const FAQ = () => {
                     </svg>
                   )}
                 </div>
-              </button>
+              </HydrationSafeButton>
 
               {/* Answer */}
               {openIndex === index && (

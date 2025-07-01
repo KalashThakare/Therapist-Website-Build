@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Info, CircleAlert, AlertCircle, PhoneCall } from "lucide-react";
 import { toast, Toaster } from 'sonner';
+import HydrationSafeButton from './hydration-safe';
 
 interface FormData {
   name: string;
@@ -165,9 +166,9 @@ export default function ContactPage() {
                     <p>VA 23230</p>
                     <p className="mt-3 font-medium">Richmond, VA</p>
                   </div>
-                  <button className="mt-4 sm:mt-6 bg-slate-600 text-[#bddade] px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium text-sm sm:text-base">
+                  <HydrationSafeButton className="mt-4 sm:mt-6 bg-slate-600 text-[#bddade] px-4 sm:px-6 py-2 sm:py-3 rounded-lg font-medium text-sm sm:text-base">
                     View on Google Maps
-                  </button>
+                  </HydrationSafeButton>
                 </div>
 
                 <div>
@@ -221,6 +222,7 @@ export default function ContactPage() {
                 <div>
                   <label className="block text-gray-700 font-medium mb-1 text-sm">Name</label>
                   <input
+                    suppressHydrationWarning={true}
                     type="text"
                     name="name"
                     value={formData.name}
@@ -233,6 +235,7 @@ export default function ContactPage() {
                 <div>
                   <label className="block text-gray-700 font-medium mb-1 text-sm">Email</label>
                   <input
+                  suppressHydrationWarning={true}
                     type="email"
                     name="email"
                     value={formData.email}
@@ -245,6 +248,7 @@ export default function ContactPage() {
                 <div>
                   <label className="block text-gray-700 font-medium mb-1 text-sm">Phone</label>
                   <input
+                  suppressHydrationWarning={true}
                     type="tel"
                     name="phone"
                     value={formData.phone}
@@ -269,6 +273,7 @@ export default function ContactPage() {
                 <div>
                   <label className="block text-gray-700 font-medium mb-1 text-sm">Preferred time to reach you</label>
                   <input
+                  suppressHydrationWarning={true}
                     type="text"
                     name="time"
                     value={formData.time}
@@ -280,6 +285,7 @@ export default function ContactPage() {
 
                 <div className="flex items-center space-x-2">
                   <input
+                  suppressHydrationWarning={true}
                     type="checkbox"
                     id="agree"
                     name="agree"
@@ -294,7 +300,7 @@ export default function ContactPage() {
                 </div>
 
 
-                <button
+                <HydrationSafeButton
                   type="button"
                   onClick={handleSubmit}
                   disabled={isSubmitting}
@@ -305,7 +311,7 @@ export default function ContactPage() {
         `}
                 >
                   {isSubmitting ? 'Sending...' : 'Send Message'}
-                </button>
+                </HydrationSafeButton>
 
                 <div className="p-1">
                   <p className="text-black flex items-start gap-1 text-xs leading-snug">
