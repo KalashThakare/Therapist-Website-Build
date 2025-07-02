@@ -59,13 +59,13 @@ const HowIHelp = () => {
             
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-slate-800">
-                Christian Individual<br />
-                Counseling in Richmond,<br />
-                VA
+                Individual<br />
+                Counseling in Maplewood Drive,<br />
+                LA
               </h3>
               
               <p className="text-slate-600 text-lg leading-relaxed">
-                Discover Peace, Purpose, and God's Truth in Richmond, VA.
+                Discover Peace, Purpose, and God's Truth in Maplewood Drive,LA.
               </p>
               
               {isClient ? (
@@ -100,13 +100,13 @@ const HowIHelp = () => {
             
             <div className="space-y-4">
               <h3 className="text-2xl font-bold text-slate-800">
-                Christian Couples<br />
-                Counseling in Richmond,<br />
-                VA
+                Couples<br />
+                Counseling in Maplewood Drive,<br />
+                LA
               </h3>
               
               <p className="text-slate-600 text-lg leading-relaxed">
-                Heal Your Relationship, Grow Closer to God Together in Richmond.
+                Heal Your Relationship, Grow Closer to God Together in LA.
               </p>
               
               {isClient ? (

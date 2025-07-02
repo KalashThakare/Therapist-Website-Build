@@ -281,11 +281,12 @@ const page = () => {
                         {/* Left Content */}
                         <div className="space-y-8">
                             {/* Header Badge */}
-                            <div className="inline-block">
-                                <span className="bg-[#bddade] text-teal-800 px-4 py-2 rounded-full text-sm font-medium">
-                                    Therapy for Personal Struggles | Los Angeles, CA
-                                </span>
-                            </div>
+                            <div className="inline-block max-w-full">
+  <span className="bg-[#bddade] text-teal-800 px-4 py-2 rounded-full text-sm font-medium text-center block sm:inline-block text-wrap sm:text-nowrap">
+    Therapy for Personal Struggles | Los Angeles, CA
+  </span>
+</div>
+
 
                             {/* Main Heading */}
                             <div className="space-y-5">
