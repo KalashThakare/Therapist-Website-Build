@@ -202,6 +202,21 @@ export default function ContactPage() {
                   </div>
                 </div>
 
+                <div>
+  <h2 className="text-2xl sm:text-3xl font-bold mb-4 sm:mb-6 text-gray-800">Session Fees</h2>
+  <div className="text-gray-800 space-y-3 text-base sm:text-lg">
+    <div className="flex flex-col sm:flex-row sm:items-center">
+      <span>Individual Session:</span>
+      <span>$200</span>
+    </div>
+    <div className="flex flex-col sm:flex-row sm:items-center">
+      <span>Couples Session:</span>
+      <span>$240</span>
+    </div>
+  </div>
+</div>
+
+
 
                 <div>
                   <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4 text-gray-800">Contact</h2>

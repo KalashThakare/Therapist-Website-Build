@@ -2,7 +2,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import {Phone} from "lucide-react";
+import {Mail, Phone} from "lucide-react";
 
 const Footer: React.FC = () => {
   const router = useRouter();
@@ -75,6 +75,13 @@ const Footer: React.FC = () => {
               </p>
             </div>
 
+            <div className="flex mb-4 gap-2">
+                <Mail className='size-4'/>
+              <p className="text-sm">
+                  serena@blakepsychology.com
+              </p>
+            </div>
+
             <div className="bg-blue-600 text-white px-3 py-2 rounded text-xs font-medium w-fit">
               ✓ VERIFIED BY Psychology Today
             </div>
@@ -134,20 +141,20 @@ const Footer: React.FC = () => {
           <div className="lg:col-span-1">
             <h3 className="text-white font-semibold mb-4 text-lg">AREAS SERVED</h3>
             <ul className="space-y-2 text-sm">
-              <li className="text-gray-300">Richmond, VA</li>
-              <li className="text-gray-300">Ashland, VA</li>
-              <li className="text-gray-300">Mechanicsville, VA</li>
-              <li className="text-gray-300">Lakeside, VA</li>
-              <li className="text-gray-300">East Highland Park, VA</li>
-              <li className="text-gray-300">Short Pump, VA</li>
-              <li className="text-gray-300">Highland Springs, VA</li>
-              <li className="text-gray-300">Glen Allen, VA</li>
-              <li className="text-gray-300">Sandston, VA</li>
-              <li className="text-gray-300">Bon Air, VA</li>
-              <li className="text-gray-300">Chester, VA</li>
-              <li className="text-gray-300">Midlothian, VA</li>
-              <li className="text-gray-300">Moseley, VA</li>
-              <li className="text-gray-300">Hopewell, VA</li>
+              <li className="text-gray-300">Richmond, LA</li>
+              <li className="text-gray-300">Ashland, LA</li>
+              <li className="text-gray-300">Mechanicsville, LA</li>
+              <li className="text-gray-300">Lakeside, LA</li>
+              <li className="text-gray-300">East Highland Park, LA</li>
+              <li className="text-gray-300">Short Pump, LA</li>
+              <li className="text-gray-300">Highland Springs, LA</li>
+              <li className="text-gray-300">Glen Allen, LA</li>
+              <li className="text-gray-300">Sandston, LA</li>
+              <li className="text-gray-300">Bon Air, LA</li>
+              <li className="text-gray-300">Chester, LA</li>
+              <li className="text-gray-300">Midlothian, LA</li>
+              <li className="text-gray-300">Moseley, LA</li>
+              <li className="text-gray-300">Hopewell, LA</li>
             </ul>
           </div>
 
@@ -157,12 +164,12 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               <li>
                 <Link href="/individual-counseling" className="text-gray-300 hover:text-white transition-colors">
-                  Christian Individual Counseling in Richmond, VA
+                  Individual Counseling in Maplewood Drive, LA
                 </Link>
               </li>
               <li>
                 <Link href="/couples-counseling" className="text-gray-300 hover:text-white transition-colors">
-                  Christian Couples Counseling in Richmond, VA
+                  Couples Counseling in Maplewood Drive, LA
                 </Link>
               </li>
             </ul>

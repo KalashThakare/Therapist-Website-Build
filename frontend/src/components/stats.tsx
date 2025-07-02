@@ -21,7 +21,7 @@ const StatsSection = () => {
               {inView && (
                 <CountUp
                   start={0}
-                  end={40}
+                  end={8}
                   duration={1.5}
                   delay={0.5}
                   suffix="+"
@@ -44,7 +44,7 @@ const StatsSection = () => {
               {inView && (
                 <CountUp
                   start={0}
-                  end={45000}
+                  end={500}
                   duration={1.2}
                   delay={0.5}
                   suffix="+"
