@@ -217,7 +217,7 @@ export default function ContactPage() {
 
               {isSubmitted ? (
                 // Success Message
-                <div className='bg-gray-50 border-2 border-black rounded-xl p-5 mt-6 shadow-2xl h-fit max-w-md mx-auto justify-center flex-col'>
+                <div className='bg-gray-50 border-2 border-black rounded-xl p-5 mt-6 shadow-xl h-fit max-w-md mx-auto justify-center flex-col'>
                   <div className="text-center">
                     <div className="text-2xl sm:text-3xl font-bold text-[#345048] mb-2">
                       <h2>Get In Touch</h2>
@@ -235,7 +235,7 @@ export default function ContactPage() {
 
               ) : (
                 // Contact Form
-                <div className='bg-gray-50 border-2 border-black rounded-xl p-5 mt-6 shadow-2xl h-fit max-w-md mx-auto'>
+                <div className='bg-gray-50 border-1 border-black rounded-xl p-5 mt-6 shadow-xl h-fit max-w-md mx-auto'>
                   <h2 className="text-2xl font-bold text-gray-800 mb-3 text-center">Get In Touch</h2>
 
                   <p className="text-gray-600 text-center mb-6 text-sm leading-relaxed">
