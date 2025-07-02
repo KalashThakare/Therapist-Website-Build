@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { Calendar, Star } from 'lucide-react';
 import HydrationSafeButton from './hydration-safe';
+import Link from 'next/link';
 
 interface AboutProps {
     bgColor?: string;
@@ -81,7 +82,7 @@ const About: React.FC<AboutProps> = ({ bgColor = "#bddade" }) => {
                             {isClient && (
                                 <HydrationSafeButton className="inline-flex items-center px-8 py-4 bg-emerald-700 hover:bg-emerald-800 text-white font-semibold rounded-xl transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1">
                                     <Calendar className="w-5 h-5 mr-3" />
-                                    Schedule Free Consultation
+                                    <Link href={"/contact"}>Schedule Free Consultation</Link>
                                 </HydrationSafeButton>
                             )}
                         </div>
