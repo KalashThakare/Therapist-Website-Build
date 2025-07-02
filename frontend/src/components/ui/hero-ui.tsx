@@ -10,7 +10,7 @@ const HeroSectionUI = ({
   mainHeading = 'Professional Counseling for Christian Healing and Growth',
   description = 'Begin your journey today towards spiritual growth, deeper relationships, and lasting inner peace.',
   stats = {
-    experience: '40+ Years Experience',
+    experience: '8+ Years Experience',
     rating: 'Top Rated',
     showTestimonials: true,
     showMedia: true

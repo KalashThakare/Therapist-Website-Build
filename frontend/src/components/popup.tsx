@@ -104,7 +104,7 @@ export const Popup = ({
                   <span className="text-sm font-semibold text-gray-700">Top Rated</span>
                 </div>
                 <div className="text-xs sm:text-sm text-gray-600">
-                  <span className="font-medium">40+ Years Experience</span>
+                  <span className="font-medium">8+ Years Experience</span>
                   <span className="mx-1 sm:mx-2">•</span>
                   <span className="underline cursor-pointer hover:text-gray-800">Media Mentions</span>
                 </div>

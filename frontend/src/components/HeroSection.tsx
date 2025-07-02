@@ -115,7 +115,7 @@ const HeroSection = () => {
               <span className="text-white font-medium">Top Rated</span>
             </div>
             <div className="hidden sm:block w-1 h-1 bg-white rounded-full"></div>
-            <div className="text-white font-medium">40+ Years Experience</div>
+            <div className="text-white font-medium">8+ Years Experience</div>
             <div className="hidden sm:block w-1 h-1 bg-white rounded-full"></div>
             <Link href="/testimonials" className="text-white font-medium hover:text-yellow-400 transition-colors underline">
               Testimonials
